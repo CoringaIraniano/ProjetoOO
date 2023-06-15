@@ -3,6 +3,10 @@ package view;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+
+import controle.Dados;
+import modelo.Filial;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,7 +28,8 @@ public class TelaGerenciamentoPatrimonio implements ActionListener, ListSelectio
 	private static JButton cadastrarPatrimonio = new JButton("Cadastrar Patrimonio");
 	private static JButton refreshPatrimonio = new JButton("Refresh");
 
-	public TelaGerenciamentoPatrimonio(String filialSelecionada) {
+	public TelaGerenciamentoPatrimonio(String filialSelecionada, Filial filial) {
+
 		titulo.setFont(new Font("Arial", Font.BOLD, 20));
 		titulo.setBounds(180, 10, 208, 50);
 
@@ -73,25 +78,53 @@ public class TelaGerenciamentoPatrimonio implements ActionListener, ListSelectio
 		janela.add(refreshPatrimonio);
 
 		janela.setSize(500, 550);
-		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		janela.setVisible(true);
 
+		salvar.addActionListener(this);
+		excluir.addActionListener(this);
 		listaPatrimoniosCadastrados.addListSelectionListener(this);
 		cadastrarPatrimonio.addActionListener(this);
 		refreshPatrimonio.addActionListener(this);
 
-		listaPatrimonios[0] = "Patrimonio 1";
-		listaPatrimonios[1] = "Patrimonio 2";
-		listaPatrimonios[2] = "Patrimonio 3";
-
+		nomeFilialJTF.setText(filial.getNome());
+		cnpjJTF.setText(filial.getCnpj());
+		enderecoJTF.setText(filial.getEndereco());
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == salvar) {
+			if (nomeFilialJTF.getText().equals("") || cnpjJTF.getText().equals("")
+					|| enderecoJTF.getText().equals("")) {
+				JOptionPane.showMessageDialog(salvar, "Todos os campos precisam ser preenchidos!");
+			} else {
+				String nomeFilial = nomeFilialJTF.getText();
+				String cnpjFilial = cnpjJTF.getText();
+				String enderecoFilial = enderecoJTF.getText();
+
+				for (Filial filial : Dados.escritorio.getFiliaisArrayList()) {
+					if (filial.getNome().equals(nomeFilial)) {
+						filial.setNome(nomeFilial);
+						filial.setCnpj(cnpjFilial);
+						filial.setEndereco(enderecoFilial);
+						JOptionPane.showMessageDialog(salvar, "Dados da filial atualizados com sucesso!");
+						break;
+					}
+				}
+
+			}
+
+		}
+		if (e.getSource() == excluir) {
+			Dados.escritorio.getFiliaisArrayList().clear();
+			JOptionPane.showMessageDialog(excluir, "Dados removidos!");
+			janela.dispose();
+		}
+
 		if (e.getSource() == refreshPatrimonio) {
 			listaPatrimoniosCadastrados.updateUI();
 		}
-		if(e.getSource() == cadastrarPatrimonio) {
+		if (e.getSource() == cadastrarPatrimonio) {
 			new TelaCadastroPatrimonio(null);
 		}
 

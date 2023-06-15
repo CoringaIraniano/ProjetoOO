@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 public class Main {
 	public static void main(String[] arg) {
-		Filial filial1 = new Filial("SAConstrucao", "12345678912345", "QR5 Conj C 46, Brasilia-DF");
+		/*	Filial filial1 = new Filial("SAConstrucao", "12345678912345", "QR5 Conj C 46, Brasilia-DF");
 		EquipamentoConstrucao patrimonio1 = new EquipamentoConstrucao("Furadeira", 2, 750, "Borch", 2.4, 2004, "Ferro");
 		EquipamentoEletronico patrimonio2 = new EquipamentoEletronico("Notebook", 1, 3800, "Acer", 2.4, 220, "Windows", "28789RF");
 		Veiculo patrimonio3 = new Veiculo("GTR", 1, 100000, "Nissan", "Leve", "Preto", 2);
@@ -15,7 +15,7 @@ public class Main {
 		}
 		
 		
-		/*
+		
 		System.out.println("------------BSA Construcao & Associados------------\n");
 		System.out.println("--------------FILIAL--------------");
 		System.out.println(filial1.toString());

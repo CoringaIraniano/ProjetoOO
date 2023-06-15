@@ -1,20 +1,22 @@
 package view;
+import modelo.*;
+import controle.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener; 
 
-public class TelaCadastroFilial implements ActionListener {
+public class TelaCadastroFilial {
 
-	private static JFrame janela = new JFrame();
-	private static JLabel titulo = new JLabel("Dados Filial");
-	private static JLabel nomeFilial = new JLabel("Nome Filial:");
-	private static JTextField nomeFilialJTF = new JTextField();
-	private static JLabel cnpj = new JLabel("CNPJ: ");
-	private static JTextField cnpjJTF = new JTextField();
-	private static JLabel endereco = new JLabel("Endereco: ");
-	private static JTextField enderecoJTF = new JTextField();
-	private static JButton cadastrar = new JButton("Cadastrar");
+	private JFrame janela = new JFrame();
+	private JLabel titulo = new JLabel("Dados Filial");
+	private JLabel nomeFilial = new JLabel("Nome Filial:");
+	private JTextField nomeFilialJTF = new JTextField();
+	private JLabel cnpj = new JLabel("CNPJ: ");
+	private JTextField cnpjJTF = new JTextField();
+	private JLabel endereco = new JLabel("Endereco: ");
+	private JTextField enderecoJTF = new JTextField();
+	private JButton cadastrar = new JButton("Cadastrar");
 	
 	public TelaCadastroFilial() {
 		titulo.setFont(new Font("Arial", Font.BOLD, 20));
@@ -49,14 +51,34 @@ public class TelaCadastroFilial implements ActionListener {
 		janela.add(cadastrar);
 		
 		janela.setSize(500,300);
-		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		janela.setVisible(true);
-	}
-	
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 		
+		cadastrar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(e.getSource() == cadastrar) {
+					nomeFilialJTF.getText();
+					cnpjJTF.getText();
+					enderecoJTF.getText();
+					if (nomeFilialJTF.getText().equals("") || cnpjJTF.getText().equals("") || enderecoJTF.getText().equals("")) {
+						JOptionPane.showMessageDialog(cadastrar, "Todos os campos precisam ser preenchidos!");
+					} else {
+						Filial novaFilial = new Filial(null, null, null);
+						novaFilial.setNome(nomeFilialJTF.getText());
+						novaFilial.setCnpj(cnpjJTF.getText());
+						novaFilial.setEndereco(enderecoJTF.getText());
+						Dados.escritorio.getFiliaisArrayList().add(novaFilial);
+						JOptionPane.showMessageDialog(cadastrar, "Dados cadastrados com sucesso!");
+						janela.dispose();
+					}
+					
+				}
+				
+			}
+		});	
 	}
+
+
 
 }

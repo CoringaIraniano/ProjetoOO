@@ -2,26 +2,33 @@ package modelo;
 import java.util.ArrayList;
 
 public class Escritorio {
-	private String nomeEmpresa;
-	private ArrayList<Filial> filiaisArrayList = new ArrayList<Filial>();
+	private String nomeEscritorio;
+	public ArrayList<Filial> filiais = new ArrayList<Filial>();
 	
-	public Escritorio(String nomeEmpresa, ArrayList<Filial> filiaisArrayList) {
+	public Escritorio(String nomeEscritorio, ArrayList<Filial> filiaisArrayList) {
 		super();
-		this.nomeEmpresa = nomeEmpresa;
-		this.filiaisArrayList = filiaisArrayList;
+		this.nomeEscritorio = nomeEscritorio;
+		this.filiais = filiaisArrayList;
 	}
 	
-	public String getNomeEmpresa() {
-		return nomeEmpresa;
+	public String getNomeEscritorio() {
+		return nomeEscritorio;
 	}
-	public void setNomeEmpresa(String nomeEmpresa) {
-		this.nomeEmpresa = nomeEmpresa;
-	}
-	public ArrayList<Filial> getFiliaisArrayList() {
-		return filiaisArrayList;
+	public void setNomeEmpresa(String nomeEscritorio) {
+		this.nomeEscritorio = nomeEscritorio;
 	}
 	public void setFiliaisArrayList(ArrayList<Filial> filiaisArrayList) {
-		this.filiaisArrayList = filiaisArrayList;
+		this.filiais = filiaisArrayList;
+	}
+	public void cadastrarEditarFilial(int pos, Filial f) {
+		filiais.add(pos, f);
+	}
+	public ArrayList<Filial> getFiliaisArrayList() {
+		return filiais;
+	}
+	
+	public String toString() {
+		return nomeEscritorio + filiais;
 	}
 	
 	
