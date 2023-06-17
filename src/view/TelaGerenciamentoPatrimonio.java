@@ -10,23 +10,24 @@ import modelo.Filial;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Iterator;
 
-public class TelaGerenciamentoPatrimonio implements ActionListener, ListSelectionListener {
+public class TelaGerenciamentoPatrimonio{
 
-	private static JFrame janela = new JFrame();
-	private static JLabel titulo = new JLabel("Dados Filial");
-	private static JLabel nomeFilial = new JLabel("Nome Filial:");
-	private static JTextField nomeFilialJTF = new JTextField();
-	private static JLabel cnpj = new JLabel("CNPJ: ");
-	private static JTextField cnpjJTF = new JTextField();
-	private static JLabel endereco = new JLabel("Endereco: ");
-	private static JTextField enderecoJTF = new JTextField();
-	private static JButton salvar = new JButton("Salvar");
-	private static JButton excluir = new JButton("Excluir");
-	private static JList<String> listaPatrimoniosCadastrados;
+	private JFrame janela = new JFrame();
+	private JLabel titulo = new JLabel("Dados Filial");
+	private JLabel nomeFilial = new JLabel("Nome Filial:");
+	private JTextField nomeFilialJTF = new JTextField();
+	private JLabel cnpj = new JLabel("CNPJ: ");
+	private JTextField cnpjJTF = new JTextField();
+	private JLabel endereco = new JLabel("Endereco: ");
+	private JTextField enderecoJTF = new JTextField();
+	private JButton salvar = new JButton("Salvar");
+	private JButton excluir = new JButton("Excluir");
+	private JList<String> listaPatrimoniosCadastrados;
 	private String[] listaPatrimonios = new String[10];
-	private static JButton cadastrarPatrimonio = new JButton("Cadastrar Patrimonio");
-	private static JButton refreshPatrimonio = new JButton("Refresh");
+	private JButton cadastrarPatrimonio = new JButton("Cadastrar Patrimonio");
+	private JButton refreshPatrimonio = new JButton("Refresh");
 
 	public TelaGerenciamentoPatrimonio(String filialSelecionada, Filial filial) {
 
@@ -80,17 +81,82 @@ public class TelaGerenciamentoPatrimonio implements ActionListener, ListSelectio
 		janela.setSize(500, 550);
 		janela.setVisible(true);
 
-		salvar.addActionListener(this);
-		excluir.addActionListener(this);
-		listaPatrimoniosCadastrados.addListSelectionListener(this);
-		cadastrarPatrimonio.addActionListener(this);
-		refreshPatrimonio.addActionListener(this);
+		//salvar.addActionListener(this);
+		//excluir.addActionListener(this);
+		//listaPatrimoniosCadastrados.addListSelectionListener(this);
+		//cadastrarPatrimonio.addActionListener(this);
+		//refreshPatrimonio.addActionListener(this);
 
 		nomeFilialJTF.setText(filial.getNome());
 		cnpjJTF.setText(filial.getCnpj());
 		enderecoJTF.setText(filial.getEndereco());
-	}
+		
+		for (ActionListener listener : salvar.getActionListeners()) {
+	        salvar.removeActionListener(listener);
+	    }
+		
+		salvar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (nomeFilialJTF.getText().equals("") || cnpjJTF.getText().equals("")
+						|| enderecoJTF.getText().equals("")) {
+					JOptionPane.showMessageDialog(salvar, "Todos os campos precisam ser preenchidos!");
+				} else {
+					String novoNome = nomeFilialJTF.getText();
+					String novoCNPJ = cnpjJTF.getText();
+					String novoEndereco = enderecoJTF.getText();
+					filial.setNome(novoNome);
+					filial.setCnpj(novoCNPJ);
+					filial.setEndereco(novoEndereco);
+					JOptionPane.showMessageDialog(salvar, "Dados atualizados com sucesso!");
+					//janela.dispose();
+					//salvar.removeActionListener(this);
+				}
+			}
+		});
+		
+		excluir.addActionListener(new ActionListener() {
+			@Override
+		    public void actionPerformed(ActionEvent e) {
+		        int selectedIndex = listaPatrimoniosCadastrados.getSelectedIndex();
+		        if (selectedIndex != -1) {
+		            Filial filialExcluir = Dados.escritorio.getFiliaisArrayList().get(selectedIndex);
+		            Dados.escritorio.getFiliaisArrayList().remove(filialExcluir);
+		            JOptionPane.showMessageDialog(excluir, "Filial removida!");
+		            janela.dispose();
+		        }
+		    }
+		});
 
+		refreshPatrimonio.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				listaPatrimoniosCadastrados.updateUI();
+			}
+		});
+
+		cadastrarPatrimonio.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new TelaCadastroPatrimonio(null);
+			}
+		});
+
+		listaPatrimoniosCadastrados.addListSelectionListener(new ListSelectionListener() {
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				if (!e.getValueIsAdjusting()) {
+					int selectedIndex = listaPatrimoniosCadastrados.getSelectedIndex();
+					if (selectedIndex != -1) {
+						String patrimonioSelecionado = listaPatrimonios[selectedIndex];
+						new TelaCadastroPatrimonio(patrimonioSelecionado);
+					}
+				}
+			}
+		});
+	}
+}
+/*
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == salvar) {
@@ -98,20 +164,11 @@ public class TelaGerenciamentoPatrimonio implements ActionListener, ListSelectio
 					|| enderecoJTF.getText().equals("")) {
 				JOptionPane.showMessageDialog(salvar, "Todos os campos precisam ser preenchidos!");
 			} else {
-				String nomeFilial = nomeFilialJTF.getText();
-				String cnpjFilial = cnpjJTF.getText();
-				String enderecoFilial = enderecoJTF.getText();
+				String novoNome = nomeFilialJTF.getText();
+				String novoCNPJ = cnpjJTF.getText();
+				String novoEndereco = enderecoJTF.getText();
 
-				for (Filial filial : Dados.escritorio.getFiliaisArrayList()) {
-					if (filial.getNome().equals(nomeFilial)) {
-						filial.setNome(nomeFilial);
-						filial.setCnpj(cnpjFilial);
-						filial.setEndereco(enderecoFilial);
-						JOptionPane.showMessageDialog(salvar, "Dados da filial atualizados com sucesso!");
-						break;
-					}
-				}
-
+				JOptionPane.showMessageDialog(salvar, "Dados atualizados com sucesso!");
 			}
 
 		}
@@ -142,3 +199,5 @@ public class TelaGerenciamentoPatrimonio implements ActionListener, ListSelectio
 
 	}
 }
+
+*/

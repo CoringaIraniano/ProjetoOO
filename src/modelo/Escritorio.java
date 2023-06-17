@@ -20,8 +20,8 @@ public class Escritorio {
 	public void setFiliaisArrayList(ArrayList<Filial> filiaisArrayList) {
 		this.filiais = filiaisArrayList;
 	}
-	public void cadastrarEditarFilial(int pos, Filial f) {
-		filiais.add(pos, f);
+	public void cadastrarEditarFilial(Filial filial) {
+		filiais.add(filial);
 	}
 	public ArrayList<Filial> getFiliaisArrayList() {
 		return filiais;

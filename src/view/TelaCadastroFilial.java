@@ -1,5 +1,4 @@
 package view;
-import modelo.*;
 import controle.*;
 import javax.swing.*;
 import java.awt.*;
@@ -58,17 +57,13 @@ public class TelaCadastroFilial {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(e.getSource() == cadastrar) {
-					nomeFilialJTF.getText();
-					cnpjJTF.getText();
-					enderecoJTF.getText();
+					String nome = nomeFilialJTF.getText();
+					String cnpj = cnpjJTF.getText();
+					String endereco = enderecoJTF.getText();
 					if (nomeFilialJTF.getText().equals("") || cnpjJTF.getText().equals("") || enderecoJTF.getText().equals("")) {
 						JOptionPane.showMessageDialog(cadastrar, "Todos os campos precisam ser preenchidos!");
 					} else {
-						Filial novaFilial = new Filial(null, null, null);
-						novaFilial.setNome(nomeFilialJTF.getText());
-						novaFilial.setCnpj(cnpjJTF.getText());
-						novaFilial.setEndereco(enderecoJTF.getText());
-						Dados.escritorio.getFiliaisArrayList().add(novaFilial);
+						Dados.cadastrarEditarFilial(nome, cnpj, endereco);
 						JOptionPane.showMessageDialog(cadastrar, "Dados cadastrados com sucesso!");
 						janela.dispose();
 					}
