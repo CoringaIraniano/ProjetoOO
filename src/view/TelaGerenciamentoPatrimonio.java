@@ -94,7 +94,9 @@ public class TelaGerenciamentoPatrimonio{
 		for (ActionListener listener : salvar.getActionListeners()) {
 	        salvar.removeActionListener(listener);
 	    }
-		
+	 }
+	}
+		/*	
 		salvar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -156,7 +158,7 @@ public class TelaGerenciamentoPatrimonio{
 		});
 	}
 }
-/*
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == salvar) {

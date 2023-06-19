@@ -5,31 +5,31 @@ public class Escritorio {
 	private String nomeEscritorio;
 	public ArrayList<Filial> filiais = new ArrayList<Filial>();
 	
-	public Escritorio(String nomeEscritorio, ArrayList<Filial> filiaisArrayList) {
+	public Escritorio() {
+		
+	}
+	
+	public Escritorio(String nomeEscritorio, ArrayList<Filial> filiais) {
 		super();
 		this.nomeEscritorio = nomeEscritorio;
-		this.filiais = filiaisArrayList;
+		this.filiais = filiais;
 	}
 	
 	public String getNomeEscritorio() {
 		return nomeEscritorio;
 	}
-	public void setNomeEmpresa(String nomeEscritorio) {
+	public void setNomeEscritorio(String nomeEscritorio) {
 		this.nomeEscritorio = nomeEscritorio;
 	}
-	public void setFiliaisArrayList(ArrayList<Filial> filiaisArrayList) {
-		this.filiais = filiaisArrayList;
-	}
-	public void cadastrarEditarFilial(Filial filial) {
+	public void setFiliais(Filial filial) {
 		filiais.add(filial);
 	}
-	public ArrayList<Filial> getFiliaisArrayList() {
+	
+	public ArrayList<Filial> getFiliais() {
 		return filiais;
 	}
 	
 	public String toString() {
 		return nomeEscritorio + filiais;
 	}
-	
-	
 }

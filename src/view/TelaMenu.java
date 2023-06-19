@@ -1,4 +1,5 @@
 package view;
+import controle.*;
 import java.awt.event.*;
 import javax.swing.*;
 import java.awt.*;
@@ -9,7 +10,7 @@ public class TelaMenu implements ActionListener {
 	private static JButton gerenciarFiliais = new JButton("Gerenciar Filiais");
 	private static JButton listarPatrimonios = new JButton("Listar Patrimonios");
 	private static JButton buscarPatrimonio = new JButton("Buscar Patrimonio");
-	
+	private static Dados controleDados = new Dados();
 	
 	public TelaMenu() {
 		titulo.setFont(new Font("Arial", Font.BOLD, 20));
@@ -40,7 +41,7 @@ public class TelaMenu implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == gerenciarFiliais) {
-			new TelaGerenciamentoFilial();
+			new TelaGerenciamentoFilial(controleDados);
 		}
 		if(e.getSource() == listarPatrimonios) {
 		

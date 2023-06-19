@@ -7,6 +7,10 @@ public class Filial {
 	private String endereco;
 	private ArrayList<ItemPatrimonio> patrimonio = new ArrayList<ItemPatrimonio>();
 
+	public Filial() {
+		
+	}
+	
 	public Filial(String nome, String endereco, String cnpj) {
 		this.nome = nome;
 		this.endereco = endereco;

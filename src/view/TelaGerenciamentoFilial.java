@@ -18,8 +18,10 @@ public class TelaGerenciamentoFilial {
 	private JList<String> listaFiliaisCadastradas;
 	private DefaultListModel<String> modelFiliais;
 	private String[] listaFiliais = new String[10];
+	private static Dados controleDados;
 
-	public TelaGerenciamentoFilial() {
+	public TelaGerenciamentoFilial(Dados controleDados) {
+		this.controleDados = controleDados;
 		listaFiliaisCadastradas = new JList<String>(listaFiliais);
 		modelFiliais = new DefaultListModel<>();
 		listaFiliaisCadastradas = new JList<>(modelFiliais);
@@ -52,14 +54,20 @@ public class TelaGerenciamentoFilial {
 		// listaFiliaisCadastradas.addListSelectionListener(this);
 		// cadastrarFilial.addActionListener(this);
 		// refreshFilial.addActionListener(this);
+	
 
+
+		
 		cadastrarFilial.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new TelaCadastroFilial();
+				new TelaCadastroFilial(controleDados);
 			}
 		});
+	}
+}
 
+/*
 		refreshFilial.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -87,7 +95,7 @@ public class TelaGerenciamentoFilial {
 		});
 	}
 }
-/*
+
  * @Override public void actionPerformed(ActionEvent e) { if (e.getSource() ==
  * cadastrarFilial) { new TelaCadastroFilial(); } if(e.getSource() ==
  * refreshFilial) { modelFiliais.clear(); ArrayList<Filial> filiais =
