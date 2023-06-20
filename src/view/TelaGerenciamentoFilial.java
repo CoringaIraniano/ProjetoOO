@@ -1,7 +1,6 @@
 package view;
 
 import controle.*;
-import modelo.Filial;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -18,10 +17,12 @@ public class TelaGerenciamentoFilial {
 	private JList<String> listaFiliaisCadastradas;
 	private DefaultListModel<String> modelFiliais;
 	private String[] listaFiliais = new String[10];
-	private static Dados controleDados;
+	private Dados controleDados;
+	private int index;
 
-	public TelaGerenciamentoFilial(Dados controleDados) {
+	public TelaGerenciamentoFilial(Dados controleDados, int index) {
 		this.controleDados = controleDados;
+		this.index = index;
 		listaFiliaisCadastradas = new JList<String>(listaFiliais);
 		modelFiliais = new DefaultListModel<>();
 		listaFiliaisCadastradas = new JList<>(modelFiliais);
@@ -61,41 +62,31 @@ public class TelaGerenciamentoFilial {
 		cadastrarFilial.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new TelaCadastroFilial(controleDados);
+				new TelaCadastroFilial(controleDados, index);
 			}
 		});
-	}
-}
 
-/*
 		refreshFilial.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				modelFiliais.clear();
-				ArrayList<Filial> filiais = Dados.getFiliais();
-				for (Filial filial : filiais) {
-					modelFiliais.addElement(filial.getNome());
-				}
-				listaFiliaisCadastradas.setModel(modelFiliais);
+				listaFiliaisCadastradas.setListData(controleDados.getEscritorio().listarFiliais());
+                listaFiliaisCadastradas.updateUI();
 			}
 		});
 
 		listaFiliaisCadastradas.addListSelectionListener(new ListSelectionListener() {
 		    @Override
 		    public void valueChanged(ListSelectionEvent e) {
-		        if (!e.getValueIsAdjusting()) {
-		            int pos = listaFiliaisCadastradas.getSelectedIndex();
-		            if (pos != -1) {
-		                String filialSelecionada = modelFiliais.getElementAt(pos);
-		                Filial filial = Dados.getFiliais().get(pos);
-		                new TelaGerenciamentoPatrimonio(filialSelecionada, filial);
+		    	Object src = e.getSource();
+		        if (e.getValueIsAdjusting() && src == listaFiliaisCadastradas) {
+		                new TelaGerenciamentoPatrimonio(controleDados, listaFiliaisCadastradas.getSelectedIndex());
 		            }
 		        }
-		    }
+		    
 		});
 	}
 }
-
+/*
  * @Override public void actionPerformed(ActionEvent e) { if (e.getSource() ==
  * cadastrarFilial) { new TelaCadastroFilial(); } if(e.getSource() ==
  * refreshFilial) { modelFiliais.clear(); ArrayList<Filial> filiais =

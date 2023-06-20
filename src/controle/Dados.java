@@ -1,4 +1,6 @@
 package controle;
+import java.util.Iterator;
+
 import modelo.*;
 
 public class Dados {
@@ -12,10 +14,12 @@ public class Dados {
 		this.escritorio = escritorio;
 	}
 	
-	public void cadastrarEditarFilial(String nome, String cnpj, String endereco) {
-		Filial filialTemporaria = new Filial(nome, cnpj, endereco);
-		escritorio.setFiliais(filialTemporaria);
+	public void cadastrarEditarFilial(String nome, String cnpj, String endereco, int index) {
+	    Filial filialTemporaria = new Filial(nome, cnpj, endereco);
+	    escritorio.setFiliais(filialTemporaria);
 	}
+	
+	
 	
 	/*
 	public Dados() {

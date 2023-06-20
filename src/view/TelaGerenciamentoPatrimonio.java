@@ -3,10 +3,7 @@ package view;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-
-import controle.Dados;
-import modelo.Filial;
-
+import controle.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -28,8 +25,9 @@ public class TelaGerenciamentoPatrimonio{
 	private String[] listaPatrimonios = new String[10];
 	private JButton cadastrarPatrimonio = new JButton("Cadastrar Patrimonio");
 	private JButton refreshPatrimonio = new JButton("Refresh");
+	private Dados controleDados;
 
-	public TelaGerenciamentoPatrimonio(String filialSelecionada, Filial filial) {
+	public TelaGerenciamentoPatrimonio(Dados controleDados, int index) {
 
 		titulo.setFont(new Font("Arial", Font.BOLD, 20));
 		titulo.setBounds(180, 10, 208, 50);
@@ -81,22 +79,10 @@ public class TelaGerenciamentoPatrimonio{
 		janela.setSize(500, 550);
 		janela.setVisible(true);
 
-		//salvar.addActionListener(this);
-		//excluir.addActionListener(this);
-		//listaPatrimoniosCadastrados.addListSelectionListener(this);
-		//cadastrarPatrimonio.addActionListener(this);
-		//refreshPatrimonio.addActionListener(this);
-
-		nomeFilialJTF.setText(filial.getNome());
-		cnpjJTF.setText(filial.getCnpj());
-		enderecoJTF.setText(filial.getEndereco());
+		nomeFilialJTF.setText(controleDados.getEscritorio().getFiliais().get(index).getNome());
+		cnpjJTF.setText(controleDados.getEscritorio().getFiliais().get(index).getCnpj());
+		enderecoJTF.setText(controleDados.getEscritorio().getFiliais().get(index).getEndereco());
 		
-		for (ActionListener listener : salvar.getActionListeners()) {
-	        salvar.removeActionListener(listener);
-	    }
-	 }
-	}
-		/*	
 		salvar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -107,12 +93,10 @@ public class TelaGerenciamentoPatrimonio{
 					String novoNome = nomeFilialJTF.getText();
 					String novoCNPJ = cnpjJTF.getText();
 					String novoEndereco = enderecoJTF.getText();
-					filial.setNome(novoNome);
-					filial.setCnpj(novoCNPJ);
-					filial.setEndereco(novoEndereco);
+					controleDados.cadastrarEditarFilial(novoNome, novoCNPJ, novoEndereco, index);
 					JOptionPane.showMessageDialog(salvar, "Dados atualizados com sucesso!");
-					//janela.dispose();
-					//salvar.removeActionListener(this);
+					janela.dispose();
+					salvar.removeActionListener(this);
 				}
 			}
 		});
@@ -122,8 +106,6 @@ public class TelaGerenciamentoPatrimonio{
 		    public void actionPerformed(ActionEvent e) {
 		        int selectedIndex = listaPatrimoniosCadastrados.getSelectedIndex();
 		        if (selectedIndex != -1) {
-		            Filial filialExcluir = Dados.escritorio.getFiliaisArrayList().get(selectedIndex);
-		            Dados.escritorio.getFiliaisArrayList().remove(filialExcluir);
 		            JOptionPane.showMessageDialog(excluir, "Filial removida!");
 		            janela.dispose();
 		        }
@@ -143,7 +125,7 @@ public class TelaGerenciamentoPatrimonio{
 				new TelaCadastroPatrimonio(null);
 			}
 		});
-
+		
 		listaPatrimoniosCadastrados.addListSelectionListener(new ListSelectionListener() {
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
@@ -159,47 +141,3 @@ public class TelaGerenciamentoPatrimonio{
 	}
 }
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == salvar) {
-			if (nomeFilialJTF.getText().equals("") || cnpjJTF.getText().equals("")
-					|| enderecoJTF.getText().equals("")) {
-				JOptionPane.showMessageDialog(salvar, "Todos os campos precisam ser preenchidos!");
-			} else {
-				String novoNome = nomeFilialJTF.getText();
-				String novoCNPJ = cnpjJTF.getText();
-				String novoEndereco = enderecoJTF.getText();
-
-				JOptionPane.showMessageDialog(salvar, "Dados atualizados com sucesso!");
-			}
-
-		}
-		if (e.getSource() == excluir) {
-			Dados.escritorio.getFiliaisArrayList().clear();
-			JOptionPane.showMessageDialog(excluir, "Dados removidos!");
-			janela.dispose();
-		}
-
-		if (e.getSource() == refreshPatrimonio) {
-			listaPatrimoniosCadastrados.updateUI();
-		}
-		if (e.getSource() == cadastrarPatrimonio) {
-			new TelaCadastroPatrimonio(null);
-		}
-
-	}
-
-	@Override
-	public void valueChanged(ListSelectionEvent e) {
-		if (!e.getValueIsAdjusting()) {
-			int selectedIndex = listaPatrimoniosCadastrados.getSelectedIndex();
-			if (selectedIndex != -1) {
-				String patrimonioSelecionado = listaPatrimonios[selectedIndex];
-				new TelaCadastroPatrimonio(patrimonioSelecionado);
-			}
-		}
-
-	}
-}
-
-*/

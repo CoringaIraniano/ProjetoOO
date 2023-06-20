@@ -1,29 +1,28 @@
 package controle;
 
-import modelo.Filial;
+import java.util.ArrayList;
+
+import modelo.*;
 
 public class ControleFilial {
     private Filial filial;
+    private ArrayList<Filial> filiais = new ArrayList<Filial>();
 
-    public ControleFilial(Filial filial) {
-        this.filial = filial;
-    }
+	public Filial getFilial() {
+		return filial;
+	}
 
-    public void cadastrarFilial(String nome, String cnpj, String endereco) {
-        filial = new Filial(nome, cnpj, endereco);
-    }
+	public void setFilial(Filial filial) {
+		this.filial = filial;
+	}
 
-    public void atualizarFilial(String novoNome, String novoCNPJ, String novoEndereco) {
-        filial.setNome(novoNome);
-        filial.setCnpj(novoCNPJ);
-        filial.setEndereco(novoEndereco);
-    }
+	public ArrayList<Filial> getFiliais() {
+		return filiais;
+	}
 
-    public void excluirFilial() {
-        filial = null;
-    }
+	public void setFiliais(ArrayList<Filial> filiais) {
+		this.filiais = filiais;
+	}
+    
 
-    public Filial getFilial() {
-        return filial;
-    }
 }

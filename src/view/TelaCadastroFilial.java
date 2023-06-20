@@ -1,8 +1,8 @@
 	package view;
 	import controle.*;
-	
-	
-	import javax.swing.*;
+import modelo.Escritorio;
+
+import javax.swing.*;
 	import java.awt.*;
 	import java.awt.event.ActionEvent;
 	import java.awt.event.ActionListener; 
@@ -19,10 +19,11 @@
 		private JTextField enderecoJTF = new JTextField();
 		private JButton cadastrar = new JButton("Cadastrar");
 		private Dados controleDados;
+		int index;
 		
-		
-		public TelaCadastroFilial(Dados controleDados) {
+		public TelaCadastroFilial(Dados controleDados, int index) {
 			this.controleDados = controleDados;
+			this.index = index;
 			titulo.setFont(new Font("Arial", Font.BOLD, 20));
 			titulo.setBounds(180, 10, 208, 50);
 			
@@ -65,8 +66,7 @@
 						if (nomeFilialJTF.getText().equals("") || cnpjJTF.getText().equals("") || enderecoJTF.getText().equals("")) {
 							JOptionPane.showMessageDialog(cadastrar, "Todos os campos precisam ser preenchidos!");
 						} else {
-							controleDados.cadastrarEditarFilial(nomeFilialJTF.getText(), cnpjJTF.getText(), enderecoJTF.getText());
-							//System.out.println(filialTemporaria);
+							controleDados.cadastrarEditarFilial(nomeFilialJTF.getText(), cnpjJTF.getText(), enderecoJTF.getText(), index);
 							JOptionPane.showMessageDialog(cadastrar, "Dados cadastrados com sucesso!");
 							janela.dispose();
 						}

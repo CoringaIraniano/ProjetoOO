@@ -41,7 +41,7 @@ public class TelaMenu implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == gerenciarFiliais) {
-			new TelaGerenciamentoFilial(controleDados);
+			new TelaGerenciamentoFilial(controleDados, controleDados.getEscritorio().getFiliais().size());
 		}
 		if(e.getSource() == listarPatrimonios) {
 		

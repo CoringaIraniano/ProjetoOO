@@ -29,6 +29,18 @@ public class Escritorio {
 		return filiais;
 	}
 	
+	public void editarCadastrarFilial(int pos, Filial filial) {
+		filiais.add(pos, filial);
+	}
+	
+	public String[] listarFiliais() {
+		String[] filiaisListadas = new String[filiais.size()];
+		for(int i = 0; i < filiais.size(); i++) {
+			filiaisListadas[i] = filiais.get(i).getNome();
+		}
+		return filiaisListadas;
+	}
+	
 	public String toString() {
 		return nomeEscritorio + filiais;
 	}
