@@ -18,7 +18,7 @@ import javax.swing.*;
 		private JLabel endereco = new JLabel("Endereco: ");
 		private JTextField enderecoJTF = new JTextField();
 		private JButton cadastrar = new JButton("Cadastrar");
-		private Dados controleDados;
+		private static Dados controleDados;
 		int index;
 		
 		public TelaCadastroFilial(Dados controleDados, int index) {

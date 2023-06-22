@@ -26,7 +26,7 @@ public class TelaMenu implements ActionListener {
 		janela.add(listarPatrimonios);
 		janela.add(buscarPatrimonio);
 		
-		janela.setSize(500,350);
+		janela.setBounds(510,265,500,350);
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		janela.setVisible(true);
 	}
@@ -41,7 +41,7 @@ public class TelaMenu implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == gerenciarFiliais) {
-			new TelaGerenciamentoFilial(controleDados, controleDados.getEscritorio().getFiliais().size());
+			new TelaGerenciamentoFilial(controleDados);
 		}
 		if(e.getSource() == listarPatrimonios) {
 		

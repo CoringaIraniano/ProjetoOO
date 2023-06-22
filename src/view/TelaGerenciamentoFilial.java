@@ -17,10 +17,11 @@ public class TelaGerenciamentoFilial {
 	private JList<String> listaFiliaisCadastradas;
 	private DefaultListModel<String> modelFiliais;
 	private String[] listaFiliais = new String[10];
-	private Dados controleDados;
+	private static Dados controleDados;
+	private int qtdFiliais;
 	private int index;
 
-	public TelaGerenciamentoFilial(Dados controleDados, int index) {
+	public TelaGerenciamentoFilial(Dados controleDados) {
 		this.controleDados = controleDados;
 		this.index = index;
 		listaFiliaisCadastradas = new JList<String>(listaFiliais);
@@ -62,13 +63,15 @@ public class TelaGerenciamentoFilial {
 		cadastrarFilial.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new TelaCadastroFilial(controleDados, index);
+				qtdFiliais = (new ControleFilial(controleDados)).getQtdFiliais();
+				new TelaCadastroFilial(controleDados, qtdFiliais);
 			}
 		});
 
 		refreshFilial.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				qtdFiliais = (new ControleFilial(controleDados)).getQtdFiliais();
 				listaFiliaisCadastradas.setListData(controleDados.getEscritorio().listarFiliais());
                 listaFiliaisCadastradas.updateUI();
 			}

@@ -29,8 +29,8 @@ public class Escritorio {
 		return filiais;
 	}
 	
-	public void editarCadastrarFilial(int pos, Filial filial) {
-		filiais.add(pos, filial);
+	public void editarCadastrarFilial(int index, Filial filial) {
+		filiais.add(index, filial);
 	}
 	
 	public String[] listarFiliais() {
@@ -39,6 +39,10 @@ public class Escritorio {
 			filiaisListadas[i] = filiais.get(i).getNome();
 		}
 		return filiaisListadas;
+	}
+	
+	public void removerFilial(Filial filial) {
+		filiais.remove(filial);
 	}
 	
 	public String toString() {

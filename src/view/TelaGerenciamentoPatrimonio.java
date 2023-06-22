@@ -8,7 +8,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Iterator;
-
+import view.*;
 public class TelaGerenciamentoPatrimonio{
 
 	private JFrame janela = new JFrame();
@@ -26,9 +26,12 @@ public class TelaGerenciamentoPatrimonio{
 	private JButton cadastrarPatrimonio = new JButton("Cadastrar Patrimonio");
 	private JButton refreshPatrimonio = new JButton("Refresh");
 	private Dados controleDados;
+	private int indiceFilialSelecionada;
+
 
 	public TelaGerenciamentoPatrimonio(Dados controleDados, int index) {
-
+		this.indiceFilialSelecionada = index;
+		
 		titulo.setFont(new Font("Arial", Font.BOLD, 20));
 		titulo.setBounds(180, 10, 208, 50);
 
@@ -104,11 +107,9 @@ public class TelaGerenciamentoPatrimonio{
 		excluir.addActionListener(new ActionListener() {
 			@Override
 		    public void actionPerformed(ActionEvent e) {
-		        int selectedIndex = listaPatrimoniosCadastrados.getSelectedIndex();
-		        if (selectedIndex != -1) {
-		            JOptionPane.showMessageDialog(excluir, "Filial removida!");
+		        	controleDados.excluirFilial(index);
+		            JOptionPane.showMessageDialog(excluir, "Filial removida com sucesso!");
 		            janela.dispose();
-		        }
 		    }
 		});
 
