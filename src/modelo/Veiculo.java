@@ -9,8 +9,7 @@ public class Veiculo extends ItemPatrimonio {
 		super();
 	}
 
-	public Veiculo(String nomeItem, int quantidade, double valor, String marca, String tipoVeiculo, String cor,
-			int qtdPortas) {
+	public Veiculo(String nomeItem, int quantidade, double valor, String marca, String tipoVeiculo, String cor, int qtdPortas) {
 		this.nomeItem = nomeItem;
 		this.quantidade = quantidade;
 		this.valor = valor;
@@ -45,8 +44,7 @@ public class Veiculo extends ItemPatrimonio {
 
 	@Override
 	public String toString() {
-		return super.toString() + "TIPO: " + tipoVeiculo + "\nCOR: " + cor
-				+ "\nQUANTIDADE DE PORTAS: " + qtdPortas + "\n";
+		return super.toString() + "TIPO: " + tipoVeiculo + "\nCOR: " + cor + "\nQUANTIDADE DE PORTAS: " + qtdPortas + "\n";
 	}
 
 }

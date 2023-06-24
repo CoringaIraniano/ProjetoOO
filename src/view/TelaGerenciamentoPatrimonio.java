@@ -9,7 +9,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Iterator;
 import view.*;
-public class TelaGerenciamentoPatrimonio{
+
+public class TelaGerenciamentoPatrimonio implements ActionListener, ListSelectionListener {
 
 	private JFrame janela = new JFrame();
 	private JLabel titulo = new JLabel("Dados Filial");
@@ -27,11 +28,12 @@ public class TelaGerenciamentoPatrimonio{
 	private JButton refreshPatrimonio = new JButton("Refresh");
 	private Dados controleDados;
 	private int indiceFilialSelecionada;
-
+	private int qtdPatrimonios;
 
 	public TelaGerenciamentoPatrimonio(Dados controleDados, int index) {
 		this.indiceFilialSelecionada = index;
-		
+		this.controleDados = controleDados;
+
 		titulo.setFont(new Font("Arial", Font.BOLD, 20));
 		titulo.setBounds(180, 10, 208, 50);
 
@@ -85,60 +87,49 @@ public class TelaGerenciamentoPatrimonio{
 		nomeFilialJTF.setText(controleDados.getEscritorio().getFiliais().get(index).getNome());
 		cnpjJTF.setText(controleDados.getEscritorio().getFiliais().get(index).getCnpj());
 		enderecoJTF.setText(controleDados.getEscritorio().getFiliais().get(index).getEndereco());
-		
-		salvar.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if (nomeFilialJTF.getText().equals("") || cnpjJTF.getText().equals("")
-						|| enderecoJTF.getText().equals("")) {
-					JOptionPane.showMessageDialog(salvar, "Todos os campos precisam ser preenchidos!");
-				} else {
-					String novoNome = nomeFilialJTF.getText();
-					String novoCNPJ = cnpjJTF.getText();
-					String novoEndereco = enderecoJTF.getText();
-					controleDados.cadastrarEditarFilial(novoNome, novoCNPJ, novoEndereco, index);
-					JOptionPane.showMessageDialog(salvar, "Dados atualizados com sucesso!");
-					janela.dispose();
-					salvar.removeActionListener(this);
-				}
-			}
-		});
-		
-		excluir.addActionListener(new ActionListener() {
-			@Override
-		    public void actionPerformed(ActionEvent e) {
-		        	controleDados.excluirFilial(index);
-		            JOptionPane.showMessageDialog(excluir, "Filial removida com sucesso!");
-		            janela.dispose();
-		    }
-		});
 
-		refreshPatrimonio.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				listaPatrimoniosCadastrados.updateUI();
-			}
-		});
+		salvar.addActionListener(this);
+		excluir.addActionListener(this);
+		refreshPatrimonio.addActionListener(this);
+		cadastrarPatrimonio.addActionListener(this);
+		listaPatrimoniosCadastrados.addListSelectionListener(this);
 
-		cadastrarPatrimonio.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				new TelaCadastroPatrimonio(null);
-			}
-		});
-		
-		listaPatrimoniosCadastrados.addListSelectionListener(new ListSelectionListener() {
-			@Override
-			public void valueChanged(ListSelectionEvent e) {
-				if (!e.getValueIsAdjusting()) {
-					int selectedIndex = listaPatrimoniosCadastrados.getSelectedIndex();
-					if (selectedIndex != -1) {
-						String patrimonioSelecionado = listaPatrimonios[selectedIndex];
-						new TelaCadastroPatrimonio(patrimonioSelecionado);
-					}
-				}
-			}
-		});
 	}
-}
 
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == salvar) {
+			if (nomeFilialJTF.getText().equals("") || cnpjJTF.getText().equals("")
+					|| enderecoJTF.getText().equals("")) {
+				JOptionPane.showMessageDialog(salvar, "Todos os campos precisam ser preenchidos!");
+			} else {
+				String novoNome = nomeFilialJTF.getText();
+				String novoCNPJ = cnpjJTF.getText();
+				String novoEndereco = enderecoJTF.getText();
+				controleDados.cadastrarEditarFilial(novoNome, novoCNPJ, novoEndereco, indiceFilialSelecionada);
+				JOptionPane.showMessageDialog(salvar, "Dados atualizados com sucesso!");
+				janela.dispose();
+			}
+		} else if (e.getSource() == excluir) {
+			controleDados.excluirFilial(indiceFilialSelecionada);
+			JOptionPane.showMessageDialog(excluir, "Filial removida com sucesso!");
+			janela.dispose();
+		} else if (e.getSource() == cadastrarPatrimonio) {
+			qtdPatrimonios = (new ControlePatrimonio(controleDados)).getQtdPatrimonios();
+			new TelaCadastroPatrimonio(controleDados, qtdPatrimonios);
+		} else if (e.getSource() == refreshPatrimonio) {
+			qtdPatrimonios = (new ControlePatrimonio(controleDados)).getQtdPatrimonios();
+			listaPatrimoniosCadastrados.setListData(controleDados.getFilial().listarPatrimonio());
+			listaPatrimoniosCadastrados.updateUI();
+		}
+	}
+
+	@Override
+	public void valueChanged(ListSelectionEvent e) {
+		Object src = e.getSource();
+		if (e.getValueIsAdjusting() && src == listaPatrimoniosCadastrados) {
+			new TelaGerenciamentoVeiculo(controleDados, listaPatrimoniosCadastrados.getSelectedIndex());
+		}
+	}
+
+}

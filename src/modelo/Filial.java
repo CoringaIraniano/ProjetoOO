@@ -46,9 +46,6 @@ public class Filial {
 		return patrimonio;
 	}
 
-	public void setPatrimonio(ArrayList<ItemPatrimonio> patrimonio) {
-		this.patrimonio = patrimonio;
-	}
 
 	public String toString() {
 		return "\nNOME FILIAL: " + nome + "\nCNPJ: " + cnpj + "\nENDERECO: " + endereco + "\n";
@@ -58,22 +55,20 @@ public class Filial {
 		patrimonio.add(item);
 	}
 	
-	/*
-	public void editarPatrimonio(ItemPatrimonio item) {
-		if(patrimonio.contains(item)) {
-			patrimonio.setNovoNome();
-		}
-	}
-	*/
-	
 	public void removerPatrimonio(ItemPatrimonio item) {
 		patrimonio.remove(item);
 	}
 	
-	
-	/*
-	public patrimonio edtiarPatrimonio() {
-		
+	public String[] listarPatrimonio(){
+		String[] patrimonioListados = new String[patrimonio.size()];
+		for (int i=0 ;i < patrimonio.size(); i++){
+			patrimonioListados[i] = patrimonio.get(i).getNomeItem();
+		}
+		return patrimonioListados;
+
 	}
-	*/
+
+
+	
+
 }

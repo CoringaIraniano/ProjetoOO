@@ -34,7 +34,7 @@ public abstract class ItemPatrimonio {
 		this.marca = marca;
 	}
 
-	public String setMarca() {
+	public String getMarca() {
 		return marca;
 	}
 
