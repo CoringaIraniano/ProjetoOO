@@ -4,6 +4,7 @@ import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import controle.*;
+import modelo.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -127,8 +128,13 @@ public class TelaGerenciamentoPatrimonio implements ActionListener, ListSelectio
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
 		Object src = e.getSource();
-		if (e.getValueIsAdjusting() && src == listaPatrimoniosCadastrados) {
+		if (e.getValueIsAdjusting() && src == listaPatrimoniosCadastrados && 
+		controleDados.getFilial().getPatrimonio().get(listaPatrimoniosCadastrados.getSelectedIndex()) instanceof Veiculo) {
 			new TelaGerenciamentoVeiculo(controleDados, listaPatrimoniosCadastrados.getSelectedIndex());
+		}
+		if (e.getValueIsAdjusting() && src == listaPatrimoniosCadastrados && 
+		controleDados.getFilial().getPatrimonio().get(listaPatrimoniosCadastrados.getSelectedIndex()) instanceof EquipamentoConstrucao) {
+			new TelaGerenciamentoEquipamento(controleDados, listaPatrimoniosCadastrados.getSelectedIndex());
 		}
 	}
 

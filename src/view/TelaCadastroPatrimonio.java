@@ -56,169 +56,169 @@ public class TelaCadastroPatrimonio implements ActionListener {
 		container.repaint();
 		container.setBounds(0, 140, 500, 450);
 		switch (pos) {
-		case 1:
-			nomePatrimonio.setBounds(10, 5, 208, 50);
-			nomePatrimonio.setFont(new Font("Arial", Font.BOLD, 15));
-			nomePatrimonioJTF.setBounds(150, 15, 280, 30);
+			case 1:
+				nomePatrimonio.setBounds(10, 5, 208, 50);
+				nomePatrimonio.setFont(new Font("Arial", Font.BOLD, 15));
+				nomePatrimonioJTF.setBounds(150, 15, 280, 30);
 
-			quantidade.setBounds(10, 45, 208, 50);
-			quantidade.setFont(new Font("Arial", Font.BOLD, 15));
-			quantidadeJTF.setBounds(110, 55, 280, 30);
+				quantidade.setBounds(10, 45, 208, 50);
+				quantidade.setFont(new Font("Arial", Font.BOLD, 15));
+				quantidadeJTF.setBounds(110, 55, 280, 30);
 
-			valor.setBounds(10, 85, 208, 50);
-			valor.setFont(new Font("Arial", Font.BOLD, 15));
-			valorJTF.setBounds(60, 95, 280, 30);
+				valor.setBounds(10, 85, 208, 50);
+				valor.setFont(new Font("Arial", Font.BOLD, 15));
+				valorJTF.setBounds(60, 95, 280, 30);
 
-			marca.setBounds(10, 125, 208, 50);
-			marca.setFont(new Font("Arial", Font.BOLD, 15));
-			marcaJTF.setBounds(70, 135, 280, 30);
+				marca.setBounds(10, 125, 208, 50);
+				marca.setFont(new Font("Arial", Font.BOLD, 15));
+				marcaJTF.setBounds(70, 135, 280, 30);
 
-			tipoVeiculo.setBounds(10, 165, 208, 50);
-			tipoVeiculo.setFont(new Font("Arial", Font.BOLD, 15));
-			tipoVeiculoJTF.setBounds(115, 175, 280, 30);
+				tipoVeiculo.setBounds(10, 165, 208, 50);
+				tipoVeiculo.setFont(new Font("Arial", Font.BOLD, 15));
+				tipoVeiculoJTF.setBounds(115, 175, 280, 30);
 
-			corVeiculo.setBounds(10, 205, 208, 50);
-			corVeiculo.setFont(new Font("Arial", Font.BOLD, 15));
-			corVeiculoJTF.setBounds(50, 215, 280, 30);
+				corVeiculo.setBounds(10, 205, 208, 50);
+				corVeiculo.setFont(new Font("Arial", Font.BOLD, 15));
+				corVeiculoJTF.setBounds(50, 215, 280, 30);
 
-			quantidadePortas.setBounds(10, 245, 208, 50);
-			quantidadePortas.setFont(new Font("Arial", Font.BOLD, 15));
-			quantidadePortasJTF.setBounds(185, 255, 280, 30);
+				quantidadePortas.setBounds(10, 245, 208, 50);
+				quantidadePortas.setFont(new Font("Arial", Font.BOLD, 15));
+				quantidadePortasJTF.setBounds(185, 255, 280, 30);
 
-			container.add(nomePatrimonio);
-			container.add(nomePatrimonioJTF);
+				container.add(nomePatrimonio);
+				container.add(nomePatrimonioJTF);
 
-			container.add(quantidade);
-			container.add(quantidadeJTF);
+				container.add(quantidade);
+				container.add(quantidadeJTF);
 
-			container.add(valor);
-			container.add(valorJTF);
+				container.add(valor);
+				container.add(valorJTF);
 
-			container.add(marca);
-			container.add(marcaJTF);
+				container.add(marca);
+				container.add(marcaJTF);
 
-			container.add(tipoVeiculo);
-			container.add(tipoVeiculoJTF);
+				container.add(tipoVeiculo);
+				container.add(tipoVeiculoJTF);
 
-			container.add(corVeiculo);
-			container.add(corVeiculoJTF);
+				container.add(corVeiculo);
+				container.add(corVeiculoJTF);
 
-			container.add(quantidadePortas);
-			container.add(quantidadePortasJTF);
+				container.add(quantidadePortas);
+				container.add(quantidadePortasJTF);
 
-			break;
+				break;
 
-		case 2:
-			nomePatrimonio.setBounds(10, 5, 208, 50);
-			nomePatrimonio.setFont(new Font("Arial", Font.BOLD, 15));
-			nomePatrimonioJTF.setBounds(150, 15, 280, 30);
+			case 2:
+				nomePatrimonio.setBounds(10, 5, 208, 50);
+				nomePatrimonio.setFont(new Font("Arial", Font.BOLD, 15));
+				nomePatrimonioJTF.setBounds(150, 15, 280, 30);
 
-			quantidade.setBounds(10, 45, 208, 50);
-			quantidade.setFont(new Font("Arial", Font.BOLD, 15));
-			quantidadeJTF.setBounds(110, 55, 280, 30);
+				quantidade.setBounds(10, 45, 208, 50);
+				quantidade.setFont(new Font("Arial", Font.BOLD, 15));
+				quantidadeJTF.setBounds(110, 55, 280, 30);
 
-			valor.setBounds(10, 85, 208, 50);
-			valor.setFont(new Font("Arial", Font.BOLD, 15));
-			valorJTF.setBounds(60, 95, 280, 30);
+				valor.setBounds(10, 85, 208, 50);
+				valor.setFont(new Font("Arial", Font.BOLD, 15));
+				valorJTF.setBounds(60, 95, 280, 30);
 
-			marca.setBounds(10, 125, 208, 50);
-			marca.setFont(new Font("Arial", Font.BOLD, 15));
-			marcaJTF.setBounds(70, 135, 280, 30);
+				marca.setBounds(10, 125, 208, 50);
+				marca.setFont(new Font("Arial", Font.BOLD, 15));
+				marcaJTF.setBounds(70, 135, 280, 30);
 
-			peso.setBounds(10, 165, 208, 50);
-			peso.setFont(new Font("Arial", Font.BOLD, 15));
-			pesoJTF.setBounds(60, 175, 280, 30);
+				peso.setBounds(10, 165, 208, 50);
+				peso.setFont(new Font("Arial", Font.BOLD, 15));
+				pesoJTF.setBounds(60, 175, 280, 30);
 
-			voltagem.setBounds(10, 205, 208, 50);
-			voltagem.setFont(new Font("Arial", Font.BOLD, 15));
-			voltagemJTF.setBounds(90, 215, 280, 30);
+				voltagem.setBounds(10, 205, 208, 50);
+				voltagem.setFont(new Font("Arial", Font.BOLD, 15));
+				voltagemJTF.setBounds(90, 215, 280, 30);
 
-			sistema.setBounds(10, 245, 208, 50);
-			sistema.setFont(new Font("Arial", Font.BOLD, 15));
-			sistemaJTF.setBounds(80, 255, 280, 30);
+				sistema.setBounds(10, 245, 208, 50);
+				sistema.setFont(new Font("Arial", Font.BOLD, 15));
+				sistemaJTF.setBounds(80, 255, 280, 30);
 
-			modelo.setBounds(10, 285, 208, 50);
-			modelo.setFont(new Font("Arial", Font.BOLD, 15));
-			modeloJTF.setBounds(80, 295, 280, 30);
+				modelo.setBounds(10, 285, 208, 50);
+				modelo.setFont(new Font("Arial", Font.BOLD, 15));
+				modeloJTF.setBounds(80, 295, 280, 30);
 
-			container.add(nomePatrimonio);
-			container.add(nomePatrimonioJTF);
+				container.add(nomePatrimonio);
+				container.add(nomePatrimonioJTF);
 
-			container.add(quantidade);
-			container.add(quantidadeJTF);
+				container.add(quantidade);
+				container.add(quantidadeJTF);
 
-			container.add(valor);
-			container.add(valorJTF);
+				container.add(valor);
+				container.add(valorJTF);
 
-			container.add(marca);
-			container.add(marcaJTF);
+				container.add(marca);
+				container.add(marcaJTF);
 
-			container.add(peso);
-			container.add(pesoJTF);
+				container.add(peso);
+				container.add(pesoJTF);
 
-			container.add(voltagem);
-			container.add(voltagemJTF);
+				container.add(voltagem);
+				container.add(voltagemJTF);
 
-			container.add(sistema);
-			container.add(sistemaJTF);
+				container.add(sistema);
+				container.add(sistemaJTF);
 
-			container.add(modelo);
-			container.add(modeloJTF);
+				container.add(modelo);
+				container.add(modeloJTF);
 
-			container.add(cadastrar);
+				container.add(cadastrar);
 
-			break;
+				break;
 
-		case 3:
+			case 3:
 
-			nomePatrimonio.setBounds(10, 5, 208, 50);
-			nomePatrimonio.setFont(new Font("Arial", Font.BOLD, 15));
-			nomePatrimonioJTF.setBounds(150, 15, 280, 30);
+				nomePatrimonio.setBounds(10, 5, 208, 50);
+				nomePatrimonio.setFont(new Font("Arial", Font.BOLD, 15));
+				nomePatrimonioJTF.setBounds(150, 15, 280, 30);
 
-			quantidade.setBounds(10, 45, 208, 50);
-			quantidade.setFont(new Font("Arial", Font.BOLD, 15));
-			quantidadeJTF.setBounds(110, 55, 280, 30);
+				quantidade.setBounds(10, 45, 208, 50);
+				quantidade.setFont(new Font("Arial", Font.BOLD, 15));
+				quantidadeJTF.setBounds(110, 55, 280, 30);
 
-			valor.setBounds(10, 85, 208, 50);
-			valor.setFont(new Font("Arial", Font.BOLD, 15));
-			valorJTF.setBounds(60, 95, 280, 30);
+				valor.setBounds(10, 85, 208, 50);
+				valor.setFont(new Font("Arial", Font.BOLD, 15));
+				valorJTF.setBounds(60, 95, 280, 30);
 
-			marca.setBounds(10, 125, 208, 50);
-			marca.setFont(new Font("Arial", Font.BOLD, 15));
-			marcaJTF.setBounds(70, 135, 280, 30);
+				marca.setBounds(10, 125, 208, 50);
+				marca.setFont(new Font("Arial", Font.BOLD, 15));
+				marcaJTF.setBounds(70, 135, 280, 30);
 
-			peso.setBounds(10, 165, 208, 50);
-			peso.setFont(new Font("Arial", Font.BOLD, 15));
-			pesoJTF.setBounds(60, 175, 280, 30);
+				peso.setBounds(10, 165, 208, 50);
+				peso.setFont(new Font("Arial", Font.BOLD, 15));
+				pesoJTF.setBounds(60, 175, 280, 30);
 
-			anoFabricacao.setBounds(10, 205, 208, 50);
-			anoFabricacao.setFont(new Font("Arial", Font.BOLD, 15));
-			anoFabricacaoJTF.setBounds(140, 215, 280, 30);
+				anoFabricacao.setBounds(10, 205, 208, 50);
+				anoFabricacao.setFont(new Font("Arial", Font.BOLD, 15));
+				anoFabricacaoJTF.setBounds(140, 215, 280, 30);
 
-			material.setBounds(10, 245, 208, 50);
-			material.setFont(new Font("Arial", Font.BOLD, 15));
-			materialJTF.setBounds(80, 255, 280, 30);
+				material.setBounds(10, 245, 208, 50);
+				material.setFont(new Font("Arial", Font.BOLD, 15));
+				materialJTF.setBounds(80, 255, 280, 30);
 
-			container.add(nomePatrimonio);
-			container.add(nomePatrimonioJTF);
+				container.add(nomePatrimonio);
+				container.add(nomePatrimonioJTF);
 
-			container.add(quantidade);
-			container.add(quantidadeJTF);
+				container.add(quantidade);
+				container.add(quantidadeJTF);
 
-			container.add(valor);
-			container.add(valorJTF);
+				container.add(valor);
+				container.add(valorJTF);
 
-			container.add(marca);
-			container.add(marcaJTF);
+				container.add(marca);
+				container.add(marcaJTF);
 
-			container.add(peso);
-			container.add(pesoJTF);
+				container.add(peso);
+				container.add(pesoJTF);
 
-			container.add(anoFabricacao);
-			container.add(anoFabricacaoJTF);
+				container.add(anoFabricacao);
+				container.add(anoFabricacaoJTF);
 
-			container.add(material);
-			container.add(materialJTF);
+				container.add(material);
+				container.add(materialJTF);
 
 		}
 	}
@@ -255,34 +255,41 @@ public class TelaCadastroPatrimonio implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-	    String nome = nomePatrimonioJTF.getText();
-	    String quantidade = quantidadeJTF.getText();
-	    String valor = valorJTF.getText();
-	    String marca = marcaJTF.getText();
+		String nome = nomePatrimonioJTF.getText();
+		String quantidade = quantidadeJTF.getText();
+		String valor = valorJTF.getText();
+		String marca = marcaJTF.getText();
 
-	    if (e.getSource() == botaoVeiculo) {
-	        cadastroPatrimonio(1, indicePatrimonio);
-	    } else if (e.getSource() == botaoEletronico) {
-	        cadastroPatrimonio(2, indicePatrimonio);
-	    } else if (e.getSource() == botaoEquipamento) {
-	        cadastroPatrimonio(3, indicePatrimonio);
-	    } else if (e.getSource() == cadastrar) {
-	        cadastrarPatrimonio(nome, quantidade, valor, marca);
-	    }
+		if (e.getSource() == botaoVeiculo) {
+			cadastroPatrimonio(1, indicePatrimonio);
+		} else if (e.getSource() == botaoEletronico) {
+			cadastroPatrimonio(2, indicePatrimonio);
+		} else if (e.getSource() == botaoEquipamento) {
+			cadastroPatrimonio(3, indicePatrimonio);
+		} else if (e.getSource() == cadastrar) {
+			cadastrarPatrimonio(nome, quantidade, valor, marca);
+		}
 	}
 
 	private void cadastrarPatrimonio(String nome, String quantidade, String valor, String marca) {
-	    if (patrimonio == 1) {
-	        String tipoVeiculo = tipoVeiculoJTF.getText();
-	        String cor = corVeiculoJTF.getText();
-	        String qtdPortas = quantidadePortasJTF.getText();
-	        controleDados.cadastrarEditarPatrimonioVeiculo(nome, quantidade, valor, marca, tipoVeiculo, cor, qtdPortas, indicePatrimonio);
-	        JOptionPane.showMessageDialog(cadastrar, "Patrimonio cadastrado com sucesso!");
-	        janela.dispose();
-	    } else if (patrimonio == 2) {
-	        // Lógica de cadastro para eletrônico
-	    } else if (patrimonio == 3) {
-	        // Lógica de cadastro para equipamento
-	    }
+		if (patrimonio == 1) {
+			String tipoVeiculo = tipoVeiculoJTF.getText();
+			String cor = corVeiculoJTF.getText();
+			String qtdPortas = quantidadePortasJTF.getText();
+			controleDados.cadastrarEditarPatrimonioVeiculo(nome, quantidade, valor, marca, tipoVeiculo, cor, qtdPortas,
+			index);
+			JOptionPane.showMessageDialog(cadastrar, "Patrimonio cadastrado com sucesso!");
+			janela.dispose();
+		} else if (patrimonio == 2) {
+
+		} else if (patrimonio == 3) {
+			String pesoEquipamento = pesoJTF.getText();
+			String anoFabricacao = anoFabricacaoJTF.getText();
+			String material = materialJTF.getText();
+			controleDados.cadastrarEditarPatrimonioConstucao(nome, quantidade, valor, marca, pesoEquipamento,
+			anoFabricacao, material, index);
+			JOptionPane.showMessageDialog(cadastrar, "Patrimonio cadastrado com sucesso!");
+			janela.dispose();
+		}
 	}
 }

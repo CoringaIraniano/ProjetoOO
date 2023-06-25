@@ -10,12 +10,12 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-import controle.*;
-import modelo.Veiculo;
+import controle.Dados;
+import modelo.EquipamentoConstrucao;
 
-public class TelaGerenciamentoVeiculo implements ActionListener {
-	private JFrame janela = new JFrame("Edicao Veiculo");
-	private JLabel titulo = new JLabel("Veiculo");
+public class TelaGerenciamentoEquipamento implements ActionListener {
+	private JFrame janela = new JFrame("Edicao Equipamento de Construcao");
+	private JLabel titulo = new JLabel("Equipamento de Construcao");
 	private JLabel nomePatrimonio = new JLabel("Nome Patrimonio:");
 	private JTextField nomePatrimonioJTF = new JTextField();
 	private JLabel quantidade = new JLabel("Quantidade: ");
@@ -24,57 +24,57 @@ public class TelaGerenciamentoVeiculo implements ActionListener {
 	private JTextField valorJTF = new JTextField();
 	private JLabel marca = new JLabel("Marca: ");
 	private JTextField marcaJTF = new JTextField();
-	private JLabel tipoVeiculo = new JLabel("Tipo Veiculo: ");
-	private JTextField tipoVeiculoJTF = new JTextField();
-	private JLabel corVeiculo = new JLabel("Cor: ");
-	private JTextField corVeiculoJTF = new JTextField();
-	private JLabel quantidadePortas = new JLabel("Quantidade de Portas: ");
-	private JTextField quantidadePortasJTF = new JTextField();
+	private JLabel peso = new JLabel("Peso: ");
+	private JTextField pesoJTF = new JTextField();
+	private JLabel anoFabricacao = new JLabel("Ano Fabricacao: ");
+	private JTextField anoFabricacaoJTF = new JTextField();
+	private JLabel material = new JLabel("Material: ");
+	private JTextField materialJTF = new JTextField();
 	private JButton excluir = new JButton("Excluir");
 	private JButton salvar = new JButton("Salvar");
 	private int indicePatrimonioSelecionado;
 	private Dados controleDados;
 
-	public TelaGerenciamentoVeiculo(Dados controleDados, int index) {
+	public TelaGerenciamentoEquipamento(Dados controleDados, int index) {
 		this.controleDados = controleDados;
 		this.indicePatrimonioSelecionado = index;
-
+		
 		titulo.setFont(new Font("Arial", Font.BOLD, 20));
-		titulo.setBounds(200, 0, 208, 50);
-
-		nomePatrimonio.setBounds(10, 45, 208, 50);
+		titulo.setBounds(110, 8, 408, 50);
+		
+		nomePatrimonio.setBounds(10, 55, 208, 50);
 		nomePatrimonio.setFont(new Font("Arial", Font.BOLD, 15));
-		nomePatrimonioJTF.setBounds(150, 55, 280, 30);
-
-		quantidade.setBounds(10, 85, 208, 50);
+		nomePatrimonioJTF.setBounds(150, 65, 280, 30);
+		
+		quantidade.setBounds(10, 95, 208, 50);
 		quantidade.setFont(new Font("Arial", Font.BOLD, 15));
-		quantidadeJTF.setBounds(110, 95, 280, 30);
-
-		valor.setBounds(10, 125, 208, 50);
+		quantidadeJTF.setBounds(110, 105, 280, 30);
+		
+		valor.setBounds(10, 135, 208, 50);
 		valor.setFont(new Font("Arial", Font.BOLD, 15));
-		valorJTF.setBounds(60, 135, 280, 30);
-
-		marca.setBounds(10, 165, 208, 50);
+		valorJTF.setBounds(60, 145, 280, 30);
+		
+		marca.setBounds(10, 175, 208, 50);
 		marca.setFont(new Font("Arial", Font.BOLD, 15));
-		marcaJTF.setBounds(70, 175, 280, 30);
+		marcaJTF.setBounds(70, 185, 280, 30);
+		
+		peso.setBounds(10, 215, 208, 50);
+		peso.setFont(new Font("Arial", Font.BOLD, 15));
+		pesoJTF.setBounds(60, 225, 280, 30);
 
-		tipoVeiculo.setBounds(10, 205, 208, 50);
-		tipoVeiculo.setFont(new Font("Arial", Font.BOLD, 15));
-		tipoVeiculoJTF.setBounds(115, 215, 280, 30);
+		anoFabricacao.setBounds(10, 255, 208, 50);
+		anoFabricacao.setFont(new Font("Arial", Font.BOLD, 15));
+		anoFabricacaoJTF.setBounds(140, 265, 280, 30);
 
-		corVeiculo.setBounds(10, 245, 208, 50);
-		corVeiculo.setFont(new Font("Arial", Font.BOLD, 15));
-		corVeiculoJTF.setBounds(50, 255, 280, 30);
-
-		quantidadePortas.setBounds(10, 285, 208, 50);
-		quantidadePortas.setFont(new Font("Arial", Font.BOLD, 15));
-		quantidadePortasJTF.setBounds(185, 295, 280, 30);
-
-		salvar.setBounds(50, 350, 150, 40);
-		excluir.setBounds(280, 350, 150, 40);
-
+		material.setBounds(10, 295, 208, 50);
+		material.setFont(new Font("Arial", Font.BOLD, 15));
+		materialJTF.setBounds(80, 305, 280, 30);
+		
+		salvar.setBounds(50, 355, 150, 40);
+		excluir.setBounds(280, 355, 150, 40);
+		
 		janela.setLayout(null);
-
+		
 		janela.add(titulo);
 
 		janela.add(nomePatrimonio);
@@ -89,15 +89,15 @@ public class TelaGerenciamentoVeiculo implements ActionListener {
 		janela.add(marca);
 		janela.add(marcaJTF);
 
-		janela.add(tipoVeiculo);
-		janela.add(tipoVeiculoJTF);
+		janela.add(peso);
+		janela.add(pesoJTF);
 
-		janela.add(corVeiculo);
-		janela.add(corVeiculoJTF);
+		janela.add(anoFabricacao);
+		janela.add(anoFabricacaoJTF);
 
-		janela.add(quantidadePortas);
-		janela.add(quantidadePortasJTF);
-
+		janela.add(material);
+		janela.add(materialJTF);
+		
 		janela.add(salvar);
 		janela.add(excluir);
 
@@ -106,36 +106,34 @@ public class TelaGerenciamentoVeiculo implements ActionListener {
 		
 		salvar.addActionListener(this);
 		excluir.addActionListener(this);
-
+		
 		nomePatrimonioJTF.setText(controleDados.getFilial().getPatrimonio().get(index).getNomeItem());
 		quantidadeJTF.setText(String.valueOf(controleDados.getFilial().getPatrimonio().get(index).getQuantidade()));
 		valorJTF.setText(String.valueOf(controleDados.getFilial().getPatrimonio().get(index).getValor()));
 		marcaJTF.setText(controleDados.getFilial().getPatrimonio().get(index).getMarca());
-		tipoVeiculoJTF.setText(((Veiculo) controleDados.getFilial().getPatrimonio().get(index)).getTipoVeiculo());
-		corVeiculoJTF.setText(((Veiculo) controleDados.getFilial().getPatrimonio().get(index)).getCor());
-		quantidadePortasJTF.setText(
-				String.valueOf(((Veiculo) controleDados.getFilial().getPatrimonio().get(index)).getQtdPortas()));
-
+		pesoJTF.setText(String.valueOf(((EquipamentoConstrucao) controleDados.getFilial().getPatrimonio().get(index)).getPesoEquipamento()));
+		anoFabricacaoJTF.setText(String.valueOf(((EquipamentoConstrucao) controleDados.getFilial().getPatrimonio().get(index)).getAnoFabricacao()));
+		materialJTF.setText(((EquipamentoConstrucao) controleDados.getFilial().getPatrimonio().get(index)).getMaterial());
 	}
-
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == salvar) {
 			if (nomePatrimonioJTF.getText().equals("") || quantidadeJTF.getText().equals("")
 					|| valorJTF.getText().equals("") || marcaJTF.getText().equals("")
-					|| tipoVeiculoJTF.getText().equals("") || corVeiculoJTF.getText().equals("")
-					|| quantidadePortasJTF.getText().equals("")) {
+					|| pesoJTF.getText().equals("") || anoFabricacaoJTF.getText().equals("")
+					|| materialJTF.getText().equals("")) {
 				JOptionPane.showMessageDialog(salvar, "Todos os campos precisam ser preenchidos!");
 			} else {
 				String novoNome = nomePatrimonioJTF.getText();
 				String novaQuantidade = quantidadeJTF.getText();
 				String novoValor = valorJTF.getText();
 				String novaMarca = marcaJTF.getText();
-				String novoTipoVeiculo = tipoVeiculoJTF.getText();
-				String novaCorVeiculo = corVeiculoJTF.getText();
-				String novaQtdPortas = quantidadePortasJTF.getText();
-				controleDados.cadastrarEditarPatrimonioVeiculo(novoNome, novaQuantidade, novoValor, novaMarca,
-						novoTipoVeiculo, novaCorVeiculo, novaQtdPortas, indicePatrimonioSelecionado);
+				String novoPeso = pesoJTF.getText();
+				String novoAnoFabricacao = anoFabricacaoJTF.getText();
+				String novoMaterial = materialJTF.getText();
+				controleDados.cadastrarEditarPatrimonioConstucao(novoNome, novaQuantidade, novoValor, novaMarca,
+						novoPeso, novoAnoFabricacao, novoMaterial, indicePatrimonioSelecionado);
 				JOptionPane.showMessageDialog(salvar, "Patrimonio atualizado com sucesso!");
 				janela.dispose();
 			}
@@ -145,4 +143,5 @@ public class TelaGerenciamentoVeiculo implements ActionListener {
 			janela.dispose();
 		}
 	}
+
 }
