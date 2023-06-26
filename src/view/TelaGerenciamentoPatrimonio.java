@@ -8,8 +8,6 @@ import modelo.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Iterator;
-import view.*;
 
 public class TelaGerenciamentoPatrimonio implements ActionListener, ListSelectionListener {
 
@@ -24,7 +22,7 @@ public class TelaGerenciamentoPatrimonio implements ActionListener, ListSelectio
 	private JButton salvar = new JButton("Salvar");
 	private JButton excluir = new JButton("Excluir");
 	private JList<String> listaPatrimoniosCadastrados;
-	private String[] listaPatrimonios = new String[10];
+	private String[] listaPatrimonios;
 	private JButton cadastrarPatrimonio = new JButton("Cadastrar Patrimonio");
 	private JButton refreshPatrimonio = new JButton("Refresh");
 	private Dados controleDados;
@@ -52,7 +50,8 @@ public class TelaGerenciamentoPatrimonio implements ActionListener, ListSelectio
 
 		salvar.setBounds(30, 210, 150, 40);
 		excluir.setBounds(300, 210, 150, 40);
-
+		
+		listaPatrimonios = new ControlePatrimonio(controleDados, indiceFilialSelecionada).getNomesPatrimonios();
 		listaPatrimoniosCadastrados = new JList<>(listaPatrimonios);
 		listaPatrimoniosCadastrados.setBounds(18, 270, 450, 160);
 		listaPatrimoniosCadastrados.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
@@ -107,7 +106,7 @@ public class TelaGerenciamentoPatrimonio implements ActionListener, ListSelectio
 				String novoNome = nomeFilialJTF.getText();
 				String novoCNPJ = cnpjJTF.getText();
 				String novoEndereco = enderecoJTF.getText();
-				controleDados.cadastrarEditarFilial(novoNome, novoCNPJ, novoEndereco, indiceFilialSelecionada);
+				controleDados.editarCadastrarFilial(novoNome, novoCNPJ, novoEndereco, indiceFilialSelecionada);
 				JOptionPane.showMessageDialog(salvar, "Dados atualizados com sucesso!");
 				janela.dispose();
 			}
@@ -116,11 +115,11 @@ public class TelaGerenciamentoPatrimonio implements ActionListener, ListSelectio
 			JOptionPane.showMessageDialog(excluir, "Filial removida com sucesso!");
 			janela.dispose();
 		} else if (e.getSource() == cadastrarPatrimonio) {
-			qtdPatrimonios = (new ControlePatrimonio(controleDados)).getQtdPatrimonios();
-			new TelaCadastroPatrimonio(controleDados, qtdPatrimonios);
+			qtdPatrimonios = (new ControlePatrimonio(controleDados, indiceFilialSelecionada)).getQtdPatrimonios();
+			new TelaCadastroPatrimonio(controleDados, qtdPatrimonios, indiceFilialSelecionada);
 		} else if (e.getSource() == refreshPatrimonio) {
-			qtdPatrimonios = (new ControlePatrimonio(controleDados)).getQtdPatrimonios();
-			listaPatrimoniosCadastrados.setListData(controleDados.getFilial().listarPatrimonio());
+			qtdPatrimonios = (new ControlePatrimonio(controleDados, indiceFilialSelecionada)).getQtdPatrimonios();
+			listaPatrimoniosCadastrados.setListData(controleDados.getFilial(indiceFilialSelecionada).listarPatrimonio());
 			listaPatrimoniosCadastrados.updateUI();
 		}
 	}
@@ -129,12 +128,12 @@ public class TelaGerenciamentoPatrimonio implements ActionListener, ListSelectio
 	public void valueChanged(ListSelectionEvent e) {
 		Object src = e.getSource();
 		if (e.getValueIsAdjusting() && src == listaPatrimoniosCadastrados && 
-		controleDados.getFilial().getPatrimonio().get(listaPatrimoniosCadastrados.getSelectedIndex()) instanceof Veiculo) {
-			new TelaGerenciamentoVeiculo(controleDados, listaPatrimoniosCadastrados.getSelectedIndex());
+		controleDados.getFilial(indiceFilialSelecionada).getPatrimonio().get(listaPatrimoniosCadastrados.getSelectedIndex()) instanceof Veiculo) {
+			new TelaGerenciamentoVeiculo(controleDados, indiceFilialSelecionada, listaPatrimoniosCadastrados.getSelectedIndex());
 		}
 		if (e.getValueIsAdjusting() && src == listaPatrimoniosCadastrados && 
-		controleDados.getFilial().getPatrimonio().get(listaPatrimoniosCadastrados.getSelectedIndex()) instanceof EquipamentoConstrucao) {
-			new TelaGerenciamentoEquipamento(controleDados, listaPatrimoniosCadastrados.getSelectedIndex());
+		controleDados.getFilial(indiceFilialSelecionada).getPatrimonio().get(listaPatrimoniosCadastrados.getSelectedIndex()) instanceof EquipamentoConstrucao) {
+			new TelaGerenciamentoEquipamento(controleDados, indiceFilialSelecionada, listaPatrimoniosCadastrados.getSelectedIndex());
 		}
 	}
 

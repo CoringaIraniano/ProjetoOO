@@ -33,10 +33,12 @@ public class TelaGerenciamentoEquipamento implements ActionListener {
 	private JButton excluir = new JButton("Excluir");
 	private JButton salvar = new JButton("Salvar");
 	private int indicePatrimonioSelecionado;
+	private int indiceFilialSelecionada;
 	private Dados controleDados;
 
-	public TelaGerenciamentoEquipamento(Dados controleDados, int index) {
+	public TelaGerenciamentoEquipamento(Dados controleDados, int indexFilial, int index) {
 		this.controleDados = controleDados;
+		this.indiceFilialSelecionada = indexFilial;
 		this.indicePatrimonioSelecionado = index;
 		
 		titulo.setFont(new Font("Arial", Font.BOLD, 20));
@@ -107,13 +109,13 @@ public class TelaGerenciamentoEquipamento implements ActionListener {
 		salvar.addActionListener(this);
 		excluir.addActionListener(this);
 		
-		nomePatrimonioJTF.setText(controleDados.getFilial().getPatrimonio().get(index).getNomeItem());
-		quantidadeJTF.setText(String.valueOf(controleDados.getFilial().getPatrimonio().get(index).getQuantidade()));
-		valorJTF.setText(String.valueOf(controleDados.getFilial().getPatrimonio().get(index).getValor()));
-		marcaJTF.setText(controleDados.getFilial().getPatrimonio().get(index).getMarca());
-		pesoJTF.setText(String.valueOf(((EquipamentoConstrucao) controleDados.getFilial().getPatrimonio().get(index)).getPesoEquipamento()));
-		anoFabricacaoJTF.setText(String.valueOf(((EquipamentoConstrucao) controleDados.getFilial().getPatrimonio().get(index)).getAnoFabricacao()));
-		materialJTF.setText(((EquipamentoConstrucao) controleDados.getFilial().getPatrimonio().get(index)).getMaterial());
+		nomePatrimonioJTF.setText(controleDados.getFilial(indiceFilialSelecionada).getPatrimonio().get(index).getNomeItem());
+		quantidadeJTF.setText(String.valueOf(controleDados.getFilial(indiceFilialSelecionada).getPatrimonio().get(index).getQuantidade()));
+		valorJTF.setText(String.valueOf(controleDados.getFilial(indiceFilialSelecionada).getPatrimonio().get(index).getValor()));
+		marcaJTF.setText(controleDados.getFilial(indiceFilialSelecionada).getPatrimonio().get(index).getMarca());
+		pesoJTF.setText(String.valueOf(((EquipamentoConstrucao) controleDados.getFilial(indiceFilialSelecionada).getPatrimonio().get(index)).getPesoEquipamento()));
+		anoFabricacaoJTF.setText(String.valueOf(((EquipamentoConstrucao) controleDados.getFilial(indiceFilialSelecionada).getPatrimonio().get(index)).getAnoFabricacao()));
+		materialJTF.setText(((EquipamentoConstrucao) controleDados.getFilial(indiceFilialSelecionada).getPatrimonio().get(index)).getMaterial());
 	}
 	
 	@Override
@@ -133,12 +135,12 @@ public class TelaGerenciamentoEquipamento implements ActionListener {
 				String novoAnoFabricacao = anoFabricacaoJTF.getText();
 				String novoMaterial = materialJTF.getText();
 				controleDados.cadastrarEditarPatrimonioConstucao(novoNome, novaQuantidade, novoValor, novaMarca,
-						novoPeso, novoAnoFabricacao, novoMaterial, indicePatrimonioSelecionado);
+						novoPeso, novoAnoFabricacao, novoMaterial, indiceFilialSelecionada, indicePatrimonioSelecionado);
 				JOptionPane.showMessageDialog(salvar, "Patrimonio atualizado com sucesso!");
 				janela.dispose();
 			}
 		} else if (e.getSource() == excluir) {
-			controleDados.excluirPatrimonio(indicePatrimonioSelecionado);
+			controleDados.excluirPatrimonio(indiceFilialSelecionada, indicePatrimonioSelecionado);
 			JOptionPane.showMessageDialog(excluir, "Patrimonio removido com sucesso!");
 			janela.dispose();
 		}

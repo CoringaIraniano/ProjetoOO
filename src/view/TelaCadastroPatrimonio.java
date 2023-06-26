@@ -47,6 +47,7 @@ public class TelaCadastroPatrimonio implements ActionListener {
 	private int indicePatrimonio;
 	private int patrimonio;
 	private int index;
+	private int indexFilial;
 
 	public void cadastroPatrimonio(int pos, int posicao) {
 		patrimonio = pos;
@@ -223,8 +224,9 @@ public class TelaCadastroPatrimonio implements ActionListener {
 		}
 	}
 
-	public TelaCadastroPatrimonio(Dados controleDados, int index) {
+	public TelaCadastroPatrimonio(Dados controleDados, int index, int indexFilial) {
 		this.index = index;
+		this.indexFilial = indexFilial;
 		this.controleDados = controleDados;
 		titulo.setFont(new Font("Arial", Font.BOLD, 20));
 		titulo.setBounds(150, 10, 208, 50);
@@ -277,7 +279,7 @@ public class TelaCadastroPatrimonio implements ActionListener {
 			String cor = corVeiculoJTF.getText();
 			String qtdPortas = quantidadePortasJTF.getText();
 			controleDados.cadastrarEditarPatrimonioVeiculo(nome, quantidade, valor, marca, tipoVeiculo, cor, qtdPortas,
-			index);
+			indexFilial, index);
 			JOptionPane.showMessageDialog(cadastrar, "Patrimonio cadastrado com sucesso!");
 			janela.dispose();
 		} else if (patrimonio == 2) {
@@ -287,7 +289,7 @@ public class TelaCadastroPatrimonio implements ActionListener {
 			String anoFabricacao = anoFabricacaoJTF.getText();
 			String material = materialJTF.getText();
 			controleDados.cadastrarEditarPatrimonioConstucao(nome, quantidade, valor, marca, pesoEquipamento,
-			anoFabricacao, material, index);
+			anoFabricacao, material, indexFilial, index);
 			JOptionPane.showMessageDialog(cadastrar, "Patrimonio cadastrado com sucesso!");
 			janela.dispose();
 		}

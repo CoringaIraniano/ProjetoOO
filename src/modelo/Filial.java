@@ -45,6 +45,10 @@ public class Filial {
 	public ArrayList<ItemPatrimonio> getPatrimonio() {
 		return patrimonio;
 	}
+	
+	public void setPatrimonio(ArrayList<ItemPatrimonio> patrimonios) {
+		patrimonio = patrimonios;
+	}
 
 
 	public String toString() {

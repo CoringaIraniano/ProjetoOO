@@ -15,14 +15,13 @@ public class TelaGerenciamentoFilial implements ActionListener, ListSelectionLis
 	private JButton cadastrarFilial;
 	private JButton refreshFilial;
 	private JList<String> listaFiliaisCadastradas;
-	private String[] listaFiliais = new String[10];
+	private String[] listaFiliais;
 	private static Dados controleDados;
 	private int qtdFiliais;
-	private int index;
 
-	public TelaGerenciamentoFilial(Dados controleDados) {
-		this.controleDados = controleDados;
-		this.index = index;
+	public TelaGerenciamentoFilial(Dados dados) {
+		controleDados = dados;
+		listaFiliais = new ControleFilial(controleDados).getNomesFiliais();
 		listaFiliaisCadastradas = new JList<String>(listaFiliais);
 		janela = new JFrame("Gerenciamento Filiais");
 		titulo = new JLabel("Filiais Cadastradas");
@@ -61,7 +60,8 @@ public class TelaGerenciamentoFilial implements ActionListener, ListSelectionLis
 			new TelaCadastroFilial(controleDados, qtdFiliais);
 		} else if (e.getSource() == refreshFilial) {
 			qtdFiliais = (new ControleFilial(controleDados)).getQtdFiliais();
-			listaFiliaisCadastradas.setListData(controleDados.getEscritorio().listarFiliais());
+			System.out.println(qtdFiliais);
+			listaFiliaisCadastradas.setListData(new ControleFilial(controleDados).getNomesFiliais());
 			listaFiliaisCadastradas.updateUI();
 		}
 	}

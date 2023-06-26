@@ -33,10 +33,12 @@ public class TelaGerenciamentoVeiculo implements ActionListener {
 	private JButton excluir = new JButton("Excluir");
 	private JButton salvar = new JButton("Salvar");
 	private int indicePatrimonioSelecionado;
+	private int indiceFilialSelecionada;
 	private Dados controleDados;
 
-	public TelaGerenciamentoVeiculo(Dados controleDados, int index) {
+	public TelaGerenciamentoVeiculo(Dados controleDados, int indexFilial, int index) {
 		this.controleDados = controleDados;
+		this.indiceFilialSelecionada = indexFilial;
 		this.indicePatrimonioSelecionado = index;
 
 		titulo.setFont(new Font("Arial", Font.BOLD, 20));
@@ -107,14 +109,14 @@ public class TelaGerenciamentoVeiculo implements ActionListener {
 		salvar.addActionListener(this);
 		excluir.addActionListener(this);
 
-		nomePatrimonioJTF.setText(controleDados.getFilial().getPatrimonio().get(index).getNomeItem());
-		quantidadeJTF.setText(String.valueOf(controleDados.getFilial().getPatrimonio().get(index).getQuantidade()));
-		valorJTF.setText(String.valueOf(controleDados.getFilial().getPatrimonio().get(index).getValor()));
-		marcaJTF.setText(controleDados.getFilial().getPatrimonio().get(index).getMarca());
-		tipoVeiculoJTF.setText(((Veiculo) controleDados.getFilial().getPatrimonio().get(index)).getTipoVeiculo());
-		corVeiculoJTF.setText(((Veiculo) controleDados.getFilial().getPatrimonio().get(index)).getCor());
+		nomePatrimonioJTF.setText(controleDados.getFilial(indiceFilialSelecionada).getPatrimonio().get(index).getNomeItem());
+		quantidadeJTF.setText(String.valueOf(controleDados.getFilial(indiceFilialSelecionada).getPatrimonio().get(index).getQuantidade()));
+		valorJTF.setText(String.valueOf(controleDados.getFilial(indiceFilialSelecionada).getPatrimonio().get(index).getValor()));
+		marcaJTF.setText(controleDados.getFilial(indiceFilialSelecionada).getPatrimonio().get(index).getMarca());
+		tipoVeiculoJTF.setText(((Veiculo) controleDados.getFilial(indiceFilialSelecionada).getPatrimonio().get(index)).getTipoVeiculo());
+		corVeiculoJTF.setText(((Veiculo) controleDados.getFilial(indiceFilialSelecionada).getPatrimonio().get(index)).getCor());
 		quantidadePortasJTF.setText(
-				String.valueOf(((Veiculo) controleDados.getFilial().getPatrimonio().get(index)).getQtdPortas()));
+				String.valueOf(((Veiculo) controleDados.getFilial(indiceFilialSelecionada).getPatrimonio().get(index)).getQtdPortas()));
 
 	}
 
@@ -135,12 +137,12 @@ public class TelaGerenciamentoVeiculo implements ActionListener {
 				String novaCorVeiculo = corVeiculoJTF.getText();
 				String novaQtdPortas = quantidadePortasJTF.getText();
 				controleDados.cadastrarEditarPatrimonioVeiculo(novoNome, novaQuantidade, novoValor, novaMarca,
-						novoTipoVeiculo, novaCorVeiculo, novaQtdPortas, indicePatrimonioSelecionado);
+						novoTipoVeiculo, novaCorVeiculo, novaQtdPortas, indiceFilialSelecionada, indicePatrimonioSelecionado);
 				JOptionPane.showMessageDialog(salvar, "Patrimonio atualizado com sucesso!");
 				janela.dispose();
 			}
 		} else if (e.getSource() == excluir) {
-			controleDados.excluirPatrimonio(indicePatrimonioSelecionado);
+			controleDados.excluirPatrimonio(indiceFilialSelecionada, indicePatrimonioSelecionado);
 			JOptionPane.showMessageDialog(excluir, "Patrimonio removido com sucesso!");
 			janela.dispose();
 		}

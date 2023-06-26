@@ -4,10 +4,10 @@ import javax.swing.*;
 import java.awt.*;
 
 public class BuscaPatrimonio implements ActionListener {
-	private static JFrame janela = new JFrame("Busca Patrimonio");
-	private static JLabel buscaPatrimonio = new JLabel("Buscar Patrimonio: ");
-	private static JTextField buscaPatrimonioJTF = new JTextField();
-	private static JButton botaoBuscar = new JButton("Buscar");
+	private JFrame janela = new JFrame("Busca Patrimonio");
+	private JLabel buscaPatrimonio = new JLabel("Buscar Patrimonio: ");
+	private JTextField buscaPatrimonioJTF = new JTextField();
+	private JButton botaoBuscar = new JButton("Buscar");
 	
 	
 	public BuscaPatrimonio() {

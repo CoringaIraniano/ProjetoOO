@@ -5,24 +5,18 @@ import java.util.ArrayList;
 import modelo.*;
 
 public class ControlePatrimonio {
-	private ItemPatrimonio patrimonio;
 	private ArrayList<ItemPatrimonio> patrimonios = new ArrayList<ItemPatrimonio>();
 
 	public ControlePatrimonio(Dados d, int index) {
-		patrimonio = d.getFilial().getPatrimonio().get(index);
-		patrimonios = d.getFilial().getPatrimonio();
+		patrimonios = d.getFilial(index).getPatrimonio();
 	}
 
 	public ControlePatrimonio(Dados d) {
-		patrimonios = d.getFilial().getPatrimonio();
-	}
-
-	public ItemPatrimonio getPatrimonio() {
-		return patrimonio;
-	}
-
-	public void setPatrimonio(ItemPatrimonio patrimonio) {
-		this.patrimonio = patrimonio;
+		for (int i = 0; i < d.getFiliais().size(); i++) {
+			for (int j = 0; j < d.getFilial(i).getPatrimonio().size(); j++) {
+				patrimonios.add(d.getFilial(i).getPatrimonio().get(j));
+			}
+		}
 	}
 
 	public ArrayList<ItemPatrimonio> getPatrimonios() {
@@ -36,5 +30,14 @@ public class ControlePatrimonio {
 	public void setPatrimonios(ArrayList<ItemPatrimonio> patrimonios) {
 		this.patrimonios = patrimonios;
 	}
+	
+	public String[] getNomesPatrimonios() {
+		String[] nomes = new String[patrimonios.size()];
 
+		for (int i = 0; i < patrimonios.size(); i++) {
+			nomes[i] = patrimonios.get(i).getNomeItem();
+		}
+		
+		return nomes;
+	}
 }

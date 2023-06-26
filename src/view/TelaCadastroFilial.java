@@ -19,7 +19,7 @@ public class TelaCadastroFilial implements ActionListener {
 	private JLabel endereco = new JLabel("Endereco: ");
 	private JTextField enderecoJTF = new JTextField();
 	private JButton cadastrar = new JButton("Cadastrar");
-	private static Dados controleDados;
+	private Dados controleDados;
 	int index;
 
 	public TelaCadastroFilial(Dados controleDados, int index) {
@@ -69,7 +69,7 @@ public class TelaCadastroFilial implements ActionListener {
 					|| enderecoJTF.getText().equals("")) {
 				JOptionPane.showMessageDialog(cadastrar, "Todos os campos precisam ser preenchidos!");
 			} else {
-				controleDados.cadastrarEditarFilial(nomeFilialJTF.getText(), cnpjJTF.getText(), enderecoJTF.getText(),
+				controleDados.editarCadastrarFilial(nomeFilialJTF.getText(), cnpjJTF.getText(), enderecoJTF.getText(),
 						index);
 				JOptionPane.showMessageDialog(cadastrar, "Dados cadastrados com sucesso!");
 				janela.dispose();

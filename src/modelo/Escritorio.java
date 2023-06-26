@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class Escritorio {
 	private String nomeEscritorio;
-	public ArrayList<Filial> filiais = new ArrayList<Filial>();
+	private ArrayList<Filial> filiais = new ArrayList<Filial>();
 	
 	public Escritorio() {
 		
@@ -21,8 +21,8 @@ public class Escritorio {
 	public void setNomeEscritorio(String nomeEscritorio) {
 		this.nomeEscritorio = nomeEscritorio;
 	}
-	public void setFiliais(Filial filial) {
-		filiais.add(filial);
+	public void setFiliais(ArrayList<Filial> filial) {
+		filiais = filial;
 	}
 	
 	public ArrayList<Filial> getFiliais() {
@@ -30,7 +30,14 @@ public class Escritorio {
 	}
 	
 	public void editarCadastrarFilial(int index, Filial filial) {
-		filiais.add(index, filial);
+		if (index == filiais.size()) {
+			filiais.add(filial);
+		} else {
+			filiais.get(index).setNome(filial.getNome());
+			filiais.get(index).setCnpj(filial.getCnpj());
+			filiais.get(index).setEndereco(filial.getEndereco());
+			filiais.get(index).setPatrimonio(filial.getPatrimonio());
+		}
 	}
 	
 	public String[] listarFiliais() {
