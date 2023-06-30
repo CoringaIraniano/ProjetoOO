@@ -4,10 +4,20 @@ import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import controle.*;
-import modelo.*;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+/**
+ * Implementa a interface que gerencia os dados das filiais, permite o cadastro
+ * de patrimônio e mostra os patrimonios vinculados a filial na Jlist
+ * 
+ * @author Paulo Henrique Melo de Souza
+ * @author Kauã Richard de Souza Cavalcante
+ * @since 2022
+ * @version 1.0
+ */
 
 public class TelaGerenciamentoPatrimonio implements ActionListener, ListSelectionListener {
 
@@ -25,13 +35,22 @@ public class TelaGerenciamentoPatrimonio implements ActionListener, ListSelectio
 	private String[] listaPatrimonios;
 	private JButton cadastrarPatrimonio = new JButton("Cadastrar Patrimonio");
 	private JButton refreshPatrimonio = new JButton("Refresh");
-	private Dados controleDados;
+	private static ControleDados controleDados;
 	private int indiceFilialSelecionada;
 	private int qtdPatrimonios;
 
-	public TelaGerenciamentoPatrimonio(Dados controleDados, int index) {
+	/**
+	 * Cria a TelaGerenciamentoPatrimonio
+	 * 
+	 * @param controleDados permite o acesso a classe Dados por meio do pacote
+	 *                      Controle onde fica toda a gerência de dados do projeto
+	 * @param index         gerencia a posição da filial selecionada
+	 */
+
+	public TelaGerenciamentoPatrimonio(ControleDados controleDados, int index) {
 		this.indiceFilialSelecionada = index;
 		this.controleDados = controleDados;
+		//System.out.println(index);
 
 		titulo.setFont(new Font("Arial", Font.BOLD, 20));
 		titulo.setBounds(180, 10, 208, 50);
@@ -50,7 +69,7 @@ public class TelaGerenciamentoPatrimonio implements ActionListener, ListSelectio
 
 		salvar.setBounds(30, 210, 150, 40);
 		excluir.setBounds(300, 210, 150, 40);
-		
+
 		listaPatrimonios = new ControlePatrimonio(controleDados, indiceFilialSelecionada).getNomesPatrimonios();
 		listaPatrimoniosCadastrados = new JList<>(listaPatrimonios);
 		listaPatrimoniosCadastrados.setBounds(18, 270, 450, 160);
@@ -96,6 +115,14 @@ public class TelaGerenciamentoPatrimonio implements ActionListener, ListSelectio
 
 	}
 
+	/**
+	 * Implementa as ações de salvar, excluir, cadastrarPatrimonio e
+	 * refreshPatrimonio. Os botões cadastrarPatrimonio e refreshPatrimonio são
+	 * respectivos a gerência de patrimônio. Já os botões salvar e excluir são
+	 * referentes à gerência da Filial selecionada na Jlist da
+	 * {@link TelaGerenciamentoFilial}.
+	 */
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == salvar) {
@@ -119,7 +146,8 @@ public class TelaGerenciamentoPatrimonio implements ActionListener, ListSelectio
 			new TelaCadastroPatrimonio(controleDados, qtdPatrimonios, indiceFilialSelecionada);
 		} else if (e.getSource() == refreshPatrimonio) {
 			qtdPatrimonios = (new ControlePatrimonio(controleDados, indiceFilialSelecionada)).getQtdPatrimonios();
-			listaPatrimoniosCadastrados.setListData(controleDados.getFilial(indiceFilialSelecionada).listarPatrimonio());
+			listaPatrimoniosCadastrados
+					.setListData(controleDados.getFilial(indiceFilialSelecionada).listarPatrimonio());
 			listaPatrimoniosCadastrados.updateUI();
 		}
 	}
@@ -127,14 +155,19 @@ public class TelaGerenciamentoPatrimonio implements ActionListener, ListSelectio
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
 		Object src = e.getSource();
-		if (e.getValueIsAdjusting() && src == listaPatrimoniosCadastrados && 
-		controleDados.getFilial(indiceFilialSelecionada).getPatrimonio().get(listaPatrimoniosCadastrados.getSelectedIndex()) instanceof Veiculo) {
-			new TelaGerenciamentoVeiculo(controleDados, indiceFilialSelecionada, listaPatrimoniosCadastrados.getSelectedIndex());
+		int indexPatrimonio = listaPatrimoniosCadastrados.getSelectedIndex();
+		if (src == listaPatrimoniosCadastrados && e.getValueIsAdjusting()){
+			if (controleDados.verificaPatrimonio(indexPatrimonio, indiceFilialSelecionada) == 3) {
+			new TelaGerenciamentoVeiculo(controleDados, indiceFilialSelecionada,listaPatrimoniosCadastrados.getSelectedIndex());
 		}
-		if (e.getValueIsAdjusting() && src == listaPatrimoniosCadastrados && 
-		controleDados.getFilial(indiceFilialSelecionada).getPatrimonio().get(listaPatrimoniosCadastrados.getSelectedIndex()) instanceof EquipamentoConstrucao) {
-			new TelaGerenciamentoEquipamento(controleDados, indiceFilialSelecionada, listaPatrimoniosCadastrados.getSelectedIndex());
+		if (controleDados.verificaPatrimonio(indexPatrimonio, indiceFilialSelecionada) == 2) {
+			new TelaGerenciamentoEquipamento(controleDados, indiceFilialSelecionada,
+					listaPatrimoniosCadastrados.getSelectedIndex());
+		}
+		if (controleDados.verificaPatrimonio(indexPatrimonio, indiceFilialSelecionada) == 1) {
+			new TelaGerenciamentoEletronico(controleDados, indiceFilialSelecionada,listaPatrimoniosCadastrados.getSelectedIndex());
 		}
 	}
+}
 
 }

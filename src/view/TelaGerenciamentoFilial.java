@@ -16,12 +16,13 @@ public class TelaGerenciamentoFilial implements ActionListener, ListSelectionLis
 	private JButton refreshFilial;
 	private JList<String> listaFiliaisCadastradas;
 	private String[] listaFiliais;
-	private static Dados controleDados;
+	private static ControleDados controleDados;
 	private int qtdFiliais;
 
-	public TelaGerenciamentoFilial(Dados dados) {
+	public TelaGerenciamentoFilial(ControleDados dados) {
 		controleDados = dados;
-		listaFiliais = new ControleFilial(controleDados).getNomesFiliais();
+		//System.out.println(controleDados.getFiliais());
+		listaFiliais = controleDados.getNomesFiliais();
 		listaFiliaisCadastradas = new JList<String>(listaFiliais);
 		janela = new JFrame("Gerenciamento Filiais");
 		titulo = new JLabel("Filiais Cadastradas");
@@ -60,8 +61,8 @@ public class TelaGerenciamentoFilial implements ActionListener, ListSelectionLis
 			new TelaCadastroFilial(controleDados, qtdFiliais);
 		} else if (e.getSource() == refreshFilial) {
 			qtdFiliais = (new ControleFilial(controleDados)).getQtdFiliais();
-			System.out.println(qtdFiliais);
-			listaFiliaisCadastradas.setListData(new ControleFilial(controleDados).getNomesFiliais());
+			//System.out.println(qtdFiliais);
+			listaFiliaisCadastradas.setListData(controleDados.getNomesFiliais());
 			listaFiliaisCadastradas.updateUI();
 		}
 	}
@@ -70,6 +71,7 @@ public class TelaGerenciamentoFilial implements ActionListener, ListSelectionLis
 	public void valueChanged(ListSelectionEvent e) {
 		Object src = e.getSource();
 		if (e.getValueIsAdjusting() && src == listaFiliaisCadastradas) {
+			System.out.println(listaFiliaisCadastradas.getSelectedIndex());
 			new TelaGerenciamentoPatrimonio(controleDados, listaFiliaisCadastradas.getSelectedIndex());
 		}
 	}

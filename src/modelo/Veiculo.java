@@ -13,6 +13,7 @@ public class Veiculo extends ItemPatrimonio {
 		this.nomeItem = nomeItem;
 		this.quantidade = quantidade;
 		this.valor = valor;
+		this.marca = marca;
 		this.tipoVeiculo = tipoVeiculo;
 		this.cor = cor;
 		this.qtdPortas = qtdPortas;

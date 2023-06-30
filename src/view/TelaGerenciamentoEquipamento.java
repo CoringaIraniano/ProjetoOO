@@ -10,8 +10,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-import controle.Dados;
-import modelo.EquipamentoConstrucao;
+import controle.ControleDados;
+
 
 public class TelaGerenciamentoEquipamento implements ActionListener {
 	private JFrame janela = new JFrame("Edicao Equipamento de Construcao");
@@ -34,9 +34,9 @@ public class TelaGerenciamentoEquipamento implements ActionListener {
 	private JButton salvar = new JButton("Salvar");
 	private int indicePatrimonioSelecionado;
 	private int indiceFilialSelecionada;
-	private Dados controleDados;
+	private static ControleDados controleDados;
 
-	public TelaGerenciamentoEquipamento(Dados controleDados, int indexFilial, int index) {
+	public TelaGerenciamentoEquipamento(ControleDados controleDados, int indexFilial, int index) {
 		this.controleDados = controleDados;
 		this.indiceFilialSelecionada = indexFilial;
 		this.indicePatrimonioSelecionado = index;
@@ -109,13 +109,15 @@ public class TelaGerenciamentoEquipamento implements ActionListener {
 		salvar.addActionListener(this);
 		excluir.addActionListener(this);
 		
+		
 		nomePatrimonioJTF.setText(controleDados.getFilial(indiceFilialSelecionada).getPatrimonio().get(index).getNomeItem());
 		quantidadeJTF.setText(String.valueOf(controleDados.getFilial(indiceFilialSelecionada).getPatrimonio().get(index).getQuantidade()));
 		valorJTF.setText(String.valueOf(controleDados.getFilial(indiceFilialSelecionada).getPatrimonio().get(index).getValor()));
 		marcaJTF.setText(controleDados.getFilial(indiceFilialSelecionada).getPatrimonio().get(index).getMarca());
-		pesoJTF.setText(String.valueOf(((EquipamentoConstrucao) controleDados.getFilial(indiceFilialSelecionada).getPatrimonio().get(index)).getPesoEquipamento()));
-		anoFabricacaoJTF.setText(String.valueOf(((EquipamentoConstrucao) controleDados.getFilial(indiceFilialSelecionada).getPatrimonio().get(index)).getAnoFabricacao()));
-		materialJTF.setText(((EquipamentoConstrucao) controleDados.getFilial(indiceFilialSelecionada).getPatrimonio().get(index)).getMaterial());
+		anoFabricacaoJTF.setText(String.valueOf(controleDados.eqpConstrucao(index, indiceFilialSelecionada).getAnoFabricacao()));
+		materialJTF.setText(controleDados.eqpConstrucao(index, indiceFilialSelecionada).getMaterial());
+		pesoJTF.setText(String.valueOf(controleDados.eqpConstrucao(index, indiceFilialSelecionada).getPesoEquipamento()));
+	
 	}
 	
 	@Override

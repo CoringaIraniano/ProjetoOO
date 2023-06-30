@@ -3,15 +3,21 @@ package view;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-
 import controle.*;
-import modelo.Veiculo;
+
+/**
+ * Implementa a interface da TelaGerenciamentoVeiculo
+ * 
+ * @author Paulo Henrique Melo de Souza
+ * @author Kauã Richard de Sousa Cavalcante
+ * @since 2022;
+ * @version 1.0;
+ */
 
 public class TelaGerenciamentoVeiculo implements ActionListener {
 	private JFrame janela = new JFrame("Edicao Veiculo");
@@ -34,9 +40,19 @@ public class TelaGerenciamentoVeiculo implements ActionListener {
 	private JButton salvar = new JButton("Salvar");
 	private int indicePatrimonioSelecionado;
 	private int indiceFilialSelecionada;
-	private Dados controleDados;
+	private static ControleDados controleDados;
 
-	public TelaGerenciamentoVeiculo(Dados controleDados, int indexFilial, int index) {
+	/**
+	 * Constrói a tela de gerenciamento de veículos
+	 * 
+	 * @param controleDados permite o acesso ao pacote Controle onde fica toda a
+	 *                      gerência de dados do projeto
+	 * @param indexFilial   representa a filial selecionada a partir da
+	 *                      TelaGerenciamentoPatrimonio
+	 * @param index         representa a posição do patrimônio selecionado
+	 */
+
+	public TelaGerenciamentoVeiculo(ControleDados controleDados, int indexFilial, int index) {
 		this.controleDados = controleDados;
 		this.indiceFilialSelecionada = indexFilial;
 		this.indicePatrimonioSelecionado = index;
@@ -105,24 +121,38 @@ public class TelaGerenciamentoVeiculo implements ActionListener {
 
 		janela.setSize(500, 450);
 		janela.setVisible(true);
-		
+
 		salvar.addActionListener(this);
 		excluir.addActionListener(this);
 
-		nomePatrimonioJTF.setText(controleDados.getFilial(indiceFilialSelecionada).getPatrimonio().get(index).getNomeItem());
-		quantidadeJTF.setText(String.valueOf(controleDados.getFilial(indiceFilialSelecionada).getPatrimonio().get(index).getQuantidade()));
-		valorJTF.setText(String.valueOf(controleDados.getFilial(indiceFilialSelecionada).getPatrimonio().get(index).getValor()));
-		marcaJTF.setText(controleDados.getFilial(indiceFilialSelecionada).getPatrimonio().get(index).getMarca());
-		tipoVeiculoJTF.setText(((Veiculo) controleDados.getFilial(indiceFilialSelecionada).getPatrimonio().get(index)).getTipoVeiculo());
-		corVeiculoJTF.setText(((Veiculo) controleDados.getFilial(indiceFilialSelecionada).getPatrimonio().get(index)).getCor());
-		quantidadePortasJTF.setText(
-				String.valueOf(((Veiculo) controleDados.getFilial(indiceFilialSelecionada).getPatrimonio().get(index)).getQtdPortas()));
+		// Preenche os JTextField's com os valores cadastrados na TelaCadastroVeiculo
 
+		nomePatrimonioJTF
+				.setText(controleDados.getFilial(indiceFilialSelecionada).getPatrimonio().get(index).getNomeItem());
+		quantidadeJTF.setText(String
+				.valueOf(controleDados.getFilial(indiceFilialSelecionada).getPatrimonio().get(index).getQuantidade()));
+		valorJTF.setText(
+				String.valueOf(controleDados.getFilial(indiceFilialSelecionada).getPatrimonio().get(index).getValor()));
+		marcaJTF.setText(controleDados.getFilial(indiceFilialSelecionada).getPatrimonio().get(index).getMarca());
+		tipoVeiculoJTF.setText(controleDados.veiculo(index, indiceFilialSelecionada).getTipoVeiculo());
+		corVeiculoJTF.setText(controleDados.veiculo(index, indiceFilialSelecionada).getCor());
+		quantidadePortasJTF
+				.setText(String.valueOf(controleDados.veiculo(index, indiceFilialSelecionada).getQtdPortas()));
 	}
+
+	/**
+	 * Implementa as ações dos botões salvar e excluir
+	 */
+
+	/**
+	 * Pega os valores cadastrados na TelaCadastroVeiculo e permite a edição ou
+	 * exclusão dos mesmos
+	 */
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == salvar) {
+			// Verifica se todos os campos da JTextField estão preenchidos devidamente
 			if (nomePatrimonioJTF.getText().equals("") || quantidadeJTF.getText().equals("")
 					|| valorJTF.getText().equals("") || marcaJTF.getText().equals("")
 					|| tipoVeiculoJTF.getText().equals("") || corVeiculoJTF.getText().equals("")
@@ -137,10 +167,12 @@ public class TelaGerenciamentoVeiculo implements ActionListener {
 				String novaCorVeiculo = corVeiculoJTF.getText();
 				String novaQtdPortas = quantidadePortasJTF.getText();
 				controleDados.cadastrarEditarPatrimonioVeiculo(novoNome, novaQuantidade, novoValor, novaMarca,
-						novoTipoVeiculo, novaCorVeiculo, novaQtdPortas, indiceFilialSelecionada, indicePatrimonioSelecionado);
+						novoTipoVeiculo, novaCorVeiculo, novaQtdPortas, indiceFilialSelecionada,
+						indicePatrimonioSelecionado);
 				JOptionPane.showMessageDialog(salvar, "Patrimonio atualizado com sucesso!");
 				janela.dispose();
 			}
+			// Remove o patrimonio selecionado
 		} else if (e.getSource() == excluir) {
 			controleDados.excluirPatrimonio(indiceFilialSelecionada, indicePatrimonioSelecionado);
 			JOptionPane.showMessageDialog(excluir, "Patrimonio removido com sucesso!");

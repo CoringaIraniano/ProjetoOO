@@ -1,8 +1,6 @@
 package view;
 
 import controle.*;
-import modelo.Escritorio;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -19,10 +17,10 @@ public class TelaCadastroFilial implements ActionListener {
 	private JLabel endereco = new JLabel("Endereco: ");
 	private JTextField enderecoJTF = new JTextField();
 	private JButton cadastrar = new JButton("Cadastrar");
-	private Dados controleDados;
+	private static ControleDados controleDados;
 	int index;
 
-	public TelaCadastroFilial(Dados controleDados, int index) {
+	public TelaCadastroFilial(ControleDados controleDados, int index) {
 		this.controleDados = controleDados;
 		this.index = index;
 		titulo.setFont(new Font("Arial", Font.BOLD, 20));
@@ -65,9 +63,10 @@ public class TelaCadastroFilial implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == cadastrar) {
-			if (nomeFilialJTF.getText().equals("") || cnpjJTF.getText().equals("")
-					|| enderecoJTF.getText().equals("")) {
-				JOptionPane.showMessageDialog(cadastrar, "Todos os campos precisam ser preenchidos!");
+			if (nomeFilialJTF.getText().equals("") || cnpjJTF.getText().equals("") || enderecoJTF.getText().equals("")) {
+				JOptionPane.showMessageDialog(cadastrar, "Preencha todos os campos!");
+			} else  if(!cnpjJTF.getText().matches("[0-9]+")){
+				JOptionPane.showMessageDialog(cadastrar, "Preencha o CNPJ corretamente!");
 			} else {
 				controleDados.editarCadastrarFilial(nomeFilialJTF.getText(), cnpjJTF.getText(), enderecoJTF.getText(),
 						index);

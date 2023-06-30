@@ -7,11 +7,11 @@ import modelo.*;
 public class ControlePatrimonio {
 	private ArrayList<ItemPatrimonio> patrimonios = new ArrayList<ItemPatrimonio>();
 
-	public ControlePatrimonio(Dados d, int index) {
+	public ControlePatrimonio(ControleDados d, int index) {
 		patrimonios = d.getFilial(index).getPatrimonio();
 	}
 
-	public ControlePatrimonio(Dados d) {
+	public ControlePatrimonio(ControleDados d) {
 		for (int i = 0; i < d.getFiliais().size(); i++) {
 			for (int j = 0; j < d.getFilial(i).getPatrimonio().size(); j++) {
 				patrimonios.add(d.getFilial(i).getPatrimonio().get(j));
@@ -40,4 +40,6 @@ public class ControlePatrimonio {
 		
 		return nomes;
 	}
+
+	
 }

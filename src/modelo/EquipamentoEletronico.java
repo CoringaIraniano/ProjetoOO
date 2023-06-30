@@ -15,6 +15,7 @@ public class EquipamentoEletronico extends ItemPatrimonio {
 		this.nomeItem = nomeItem;
 		this.quantidade = quantidade;
 		this.valor = valor;
+		this.marca = marca;
 		this.pesoEquipamento = pesoEquipamento;
 		this.voltagem = voltagem;
 		this.sistema = sistema;
