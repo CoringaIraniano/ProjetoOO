@@ -284,7 +284,7 @@ public class TelaCadastroPatrimonio implements ActionListener {
 				JOptionPane.showMessageDialog(cadastrar,
 						"Preencha os campos de quantidade, valor e quantidade de portas corretamente!");
 			} else {
-				controleDados.cadastrarEditarPatrimonioVeiculo(nome, quantidade, valor, marca, tipo, cor,
+				controleDados.editarCadastrarPatrimonioVeiculo(nome, quantidade, valor, marca, tipo, cor,
 						quantidadePortas, indexFilial, index);
 				JOptionPane.showMessageDialog(cadastrar, "Veiculo cadastrado com sucesso!");
 				janela.dispose();
@@ -302,7 +302,7 @@ public class TelaCadastroPatrimonio implements ActionListener {
 					|| !pesoEletronico.matches("[-+]?[0-9]*\\.?[0-9]*") || !voltagem.matches("[-+]?[0-9]*\\.?[0-9]*")) {
 				JOptionPane.showMessageDialog(cadastrar, "Preencha os campos de quantidade, valor, peso e voltagem corretamente!");
 			} else {
-				controleDados.cadastrarEditarPatrimonioEletronico(nome, quantidade, valor, marca, pesoEletronico,
+				controleDados.editarCadastrarPatrimonioEletronico(nome, quantidade, valor, marca, pesoEletronico,
 						voltagem, sistema, modelo, indexFilial, index);
 				JOptionPane.showMessageDialog(cadastrar, "Eletronico cadastrado com sucesso!");
 				janela.dispose();
@@ -319,7 +319,7 @@ public class TelaCadastroPatrimonio implements ActionListener {
 					|| !pesoEquipamento.matches("[-+]?[0-9]*\\.?[0-9]*") || !anoFabricacao.matches("[0-9]+")) {
 				JOptionPane.showMessageDialog(cadastrar, "Preencha os campos de quantidade, valor, peso e ano de fabricacao corretamente!");
 			} else {
-				controleDados.cadastrarEditarPatrimonioConstucao(nome, quantidade, valor, marca, pesoEquipamento,
+				controleDados.editarCadastrarPatrimonioConstrucao(nome, quantidade, valor, marca, pesoEquipamento,
 						anoFabricacao, material, indexFilial, index);
 				JOptionPane.showMessageDialog(cadastrar, "Equipamento cadastrado com sucesso!");
 				janela.dispose();

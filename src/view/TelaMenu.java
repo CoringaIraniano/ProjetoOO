@@ -67,7 +67,7 @@ public class TelaMenu implements ActionListener {
 			new TelaGerenciamentoFilial(controleDados);
 		}
 		if (e.getSource() == listarPatrimonios) {
-			new BuscaPatrimonio(controleDados);
+			new TelaBuscaPatrimonio(controleDados);
 		}
 
 	}

@@ -55,7 +55,7 @@ public class Filial {
 		return "\nNOME FILIAL: " + nome + "\nCNPJ: " + cnpj + "\nENDERECO: " + endereco + "\n";
 	}
 
-	public void cadastrarEditarPatrimonio(ItemPatrimonio item) {
+	public void editarCadastrarPatrimonio(ItemPatrimonio item) {
 		patrimonio.add(item);
 	}
 
@@ -71,4 +71,14 @@ public class Filial {
 		return patrimonioListados;
 
 	}
+	
+	public ItemPatrimonio buscarPatrimonio(String nome) {
+	    for (ItemPatrimonio item : patrimonio) {
+	        if (item.getNomeItem().equals(nome)) {
+	            return item;
+	        }
+	    }
+	    return null; // Retorna null caso o patrimônio não seja encontrado
+	}
+
 }

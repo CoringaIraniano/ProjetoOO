@@ -35,21 +35,28 @@ public class ControleDados {
 	}
 
 	public boolean editarCadastrarFilial(String nome, String cnpj, String endereco, int index) {
-		if (!cnpj.matches("[0-9]+")) {
-			return false;
-		} else {
-			Filial filialTemporaria = new Filial(nome, cnpj, endereco);
+	    if (!cnpj.matches("[0-9]+")) {
+	        return false;
+	    } else {
+	        Filial filialTemporaria = new Filial(nome, cnpj, endereco);
 
-			if (index == escritorio.getFiliais().size()) {
-				escritorio.getFiliais().add(filialTemporaria);
-			} else {
-				escritorio.editarCadastrarFilial(index, filialTemporaria);
-			}
-			return true;
-		}
+	        if (index == escritorio.getFiliais().size()) {
+	            // Adiciona a nova filial ao escritório
+	            escritorio.getFiliais().add(filialTemporaria);
+	        } else {
+	            // Copia os patrimônios da filial existente para a nova filial
+	            Filial filialExistente = escritorio.getFiliais().get(index);
+	            filialTemporaria.setPatrimonio(filialExistente.getPatrimonio());
+
+	            // Substitui a filial existente pela nova filial
+	            escritorio.getFiliais().set(index, filialTemporaria);
+	        }
+	        return true;
+	    }
 	}
 
-	public boolean cadastrarEditarPatrimonioVeiculo(String nome, String quantidade, String valor, String marca,
+
+	public boolean editarCadastrarPatrimonioVeiculo(String nome, String quantidade, String valor, String marca,
 			String tipoVeiculo, String cor, String qtdPortas, int indexFilial, int index) {
 		if (!quantidade.matches("[0-9]+") || !valor.matches("[-+]?[0-9]*\\.?[0-9]*") || !qtdPortas.matches("[0-9]+")) {
 			return false;
@@ -57,24 +64,26 @@ public class ControleDados {
 			Veiculo veiculoTemporario = new Veiculo(nome, Integer.parseInt(quantidade), Double.parseDouble(valor),
 					marca, tipoVeiculo, cor, Integer.parseInt(qtdPortas));
 			if (index == escritorio.getFiliais().get(indexFilial).getPatrimonio().size()) {
-				escritorio.getFiliais().get(indexFilial).cadastrarEditarPatrimonio(veiculoTemporario);
-				
+				escritorio.getFiliais().get(indexFilial).editarCadastrarPatrimonio(veiculoTemporario);
+
 			} else {
 				escritorio.getFiliais().get(indexFilial).getPatrimonio().get(index).setNomeItem(nome);
-				escritorio.getFiliais().get(indexFilial).getPatrimonio().get(index).setQuantidade(Integer.parseInt(quantidade));
+				escritorio.getFiliais().get(indexFilial).getPatrimonio().get(index)
+						.setQuantidade(Integer.parseInt(quantidade));
 				escritorio.getFiliais().get(indexFilial).getPatrimonio().get(index).setValor(Double.parseDouble(valor));
 				escritorio.getFiliais().get(indexFilial).getPatrimonio().get(index).setMarca(marca);
 				((Veiculo) escritorio.getFiliais().get(indexFilial).getPatrimonio().get(index)).setCor(cor);
-				((Veiculo) escritorio.getFiliais().get(indexFilial).getPatrimonio().get(index)).setTipoVeiculo(tipoVeiculo);
-				((Veiculo) escritorio.getFiliais().get(indexFilial).getPatrimonio().get(index)).setQtdPortas(Integer.parseInt(qtdPortas));
-				
+				((Veiculo) escritorio.getFiliais().get(indexFilial).getPatrimonio().get(index))
+						.setTipoVeiculo(tipoVeiculo);
+				((Veiculo) escritorio.getFiliais().get(indexFilial).getPatrimonio().get(index))
+						.setQtdPortas(Integer.parseInt(qtdPortas));
+
 			}
 			return true;
 		}
 	}
 
-
-	public boolean cadastrarEditarPatrimonioEletronico(String nome, String quantidade, String valor, String marca,
+	public boolean editarCadastrarPatrimonioEletronico(String nome, String quantidade, String valor, String marca,
 			String peso, String voltagem, String sistema, String modelo, int indexFilial, int index) {
 		if (!quantidade.matches("[0-9]+") || !valor.matches("[-+]?[0-9]*\\.?[0-9]*")
 				|| !peso.matches("[-+]?[0-9]*\\.?[0-9]*") || !voltagem.matches("[0-9]+")) {
@@ -84,22 +93,26 @@ public class ControleDados {
 					Integer.parseInt(quantidade), Double.parseDouble(valor), marca, Double.parseDouble(peso),
 					Integer.parseInt(voltagem), sistema, modelo);
 			if (index == escritorio.getFiliais().get(indexFilial).getPatrimonio().size()) {
-				escritorio.getFiliais().get(indexFilial).cadastrarEditarPatrimonio(eqpeletronicoTemporario);
+				escritorio.getFiliais().get(indexFilial).editarCadastrarPatrimonio(eqpeletronicoTemporario);
 
 			} else {
 				escritorio.getFiliais().get(indexFilial).getPatrimonio().get(index).setNomeItem(nome);
-				escritorio.getFiliais().get(indexFilial).getPatrimonio().get(index).setQuantidade(Integer.parseInt(quantidade));
+				escritorio.getFiliais().get(indexFilial).getPatrimonio().get(index)
+						.setQuantidade(Integer.parseInt(quantidade));
 				escritorio.getFiliais().get(indexFilial).getPatrimonio().get(index).setValor(Double.parseDouble(valor));
 				escritorio.getFiliais().get(indexFilial).getPatrimonio().get(index).setMarca(marca);
-				((EquipamentoEletronico) escritorio.getFiliais().get(indexFilial).getPatrimonio().get(index)).setPesoEquipamento(Double.parseDouble(peso));
-				((EquipamentoEletronico) escritorio.getFiliais().get(indexFilial).getPatrimonio().get(index)).setVoltagem(Integer.parseInt(voltagem));
-				((EquipamentoEletronico) escritorio.getFiliais().get(indexFilial).getPatrimonio().get(index)).setSistema(sistema);
+				((EquipamentoEletronico) escritorio.getFiliais().get(indexFilial).getPatrimonio().get(index))
+						.setPesoEquipamento(Double.parseDouble(peso));
+				((EquipamentoEletronico) escritorio.getFiliais().get(indexFilial).getPatrimonio().get(index))
+						.setVoltagem(Integer.parseInt(voltagem));
+				((EquipamentoEletronico) escritorio.getFiliais().get(indexFilial).getPatrimonio().get(index))
+						.setSistema(sistema);
 			}
 			return true;
 		}
 	}
 
-	public boolean cadastrarEditarPatrimonioConstucao(String nome, String quantidade, String valor, String marca,
+	public boolean editarCadastrarPatrimonioConstrucao(String nome, String quantidade, String valor, String marca,
 			String pesoEquipamento, String anoFabricacao, String material, int indexFilial, int index) {
 		if (!quantidade.matches("[0-9]+") || !valor.matches("[-+]?[0-9]*\\.?[0-9]*")
 				|| !pesoEquipamento.matches("[-+]?[0-9]*\\.?[0-9]*") || !anoFabricacao.matches("[0-9]+")) {
@@ -109,21 +122,25 @@ public class ControleDados {
 					Integer.parseInt(quantidade), Double.parseDouble(valor), marca, Double.parseDouble(pesoEquipamento),
 					Integer.parseInt(anoFabricacao), material);
 			if (index == escritorio.getFiliais().get(indexFilial).getPatrimonio().size()) {
-				escritorio.getFiliais().get(indexFilial).cadastrarEditarPatrimonio(eqpconstrucaoTemporario);
-				
+				escritorio.getFiliais().get(indexFilial).editarCadastrarPatrimonio(eqpconstrucaoTemporario);
+
 			} else {
 				escritorio.getFiliais().get(indexFilial).getPatrimonio().get(index).setNomeItem(nome);
-				escritorio.getFiliais().get(indexFilial).getPatrimonio().get(index).setQuantidade(Integer.parseInt(quantidade));
+				escritorio.getFiliais().get(indexFilial).getPatrimonio().get(index)
+						.setQuantidade(Integer.parseInt(quantidade));
 				escritorio.getFiliais().get(indexFilial).getPatrimonio().get(index).setValor(Double.parseDouble(valor));
 				escritorio.getFiliais().get(indexFilial).getPatrimonio().get(index).setMarca(marca);
-				((EquipamentoConstrucao) escritorio.getFiliais().get(indexFilial).getPatrimonio().get(index)).setPesoEquipamento(Double.parseDouble(pesoEquipamento));
-				((EquipamentoConstrucao) escritorio.getFiliais().get(indexFilial).getPatrimonio().get(index)).setAnoFabricacao(Integer.parseInt(anoFabricacao));
-				((EquipamentoConstrucao) escritorio.getFiliais().get(indexFilial).getPatrimonio().get(index)).setMaterial(material);
+				((EquipamentoConstrucao) escritorio.getFiliais().get(indexFilial).getPatrimonio().get(index))
+						.setPesoEquipamento(Double.parseDouble(pesoEquipamento));
+				((EquipamentoConstrucao) escritorio.getFiliais().get(indexFilial).getPatrimonio().get(index))
+						.setAnoFabricacao(Integer.parseInt(anoFabricacao));
+				((EquipamentoConstrucao) escritorio.getFiliais().get(indexFilial).getPatrimonio().get(index))
+						.setMaterial(material);
 			}
 			return true;
 		}
 	}
-	
+
 	public int verificaPatrimonio(int index, int indexFilial) {
 		int eletronico = 1;
 		int equipamento = 2;
@@ -168,64 +185,51 @@ public class ControleDados {
 			escritorio.getFiliais().get(indexFilial).getPatrimonio().remove(index);
 		}
 	}
-	
+
 	public void fillPatrimoniosWithSomeData() {
-		int i = 0;
+		int i = 0; // Número da filial
+
 		for (Filial filial : escritorio.getFiliais()) {
-			for(int j = 0; j < 9; j++) {
-				ItemPatrimonio patrimonios = null;
-				String nomes;
-				int quantidade;
-				double valor;
-				String marca;
-				
-				
-				if (j < 3) {
-					patrimonios = new Veiculo();
-					nomes = "Veiculo" + j;
-					quantidade = 1;
-					valor = 2500 + j;
-					marca = "Marca" + j;
-					patrimonios.setNomeItem(nomes);
-					patrimonios.setQuantidade(quantidade);
-					patrimonios.setValor(valor);
-					patrimonios.setMarca(marca);
-					((Veiculo) patrimonios).setTipoVeiculo("Tipo" + j);
-					((Veiculo) patrimonios).setCor("Cor" + j);
-					((Veiculo) patrimonios).setQtdPortas(2);
-					filial.cadastrarEditarPatrimonio(patrimonios);
-				} else if(j > 3 && j <= 6) {
-					patrimonios = new EquipamentoEletronico();
-					nomes = "Eletronico" + j;
-					quantidade = 1;
-					valor = 2500 + j;
-					marca = "Marca" + j;
-					patrimonios.setNomeItem(nomes);
-					patrimonios.setQuantidade(quantidade);
-					patrimonios.setValor(valor);
-					patrimonios.setMarca(marca);
-					((EquipamentoEletronico) patrimonios).setPesoEquipamento(j);
-					((EquipamentoEletronico) patrimonios).setVoltagem(220);
-					((EquipamentoEletronico) patrimonios).setSistema("Sistema" + j);
-					((EquipamentoEletronico) patrimonios).setModelo("Modelo" + j);
-					filial.cadastrarEditarPatrimonio(patrimonios);
-				} else if(j > 6){
-					patrimonios = new EquipamentoConstrucao();
-					nomes = "Equipamento" + j;
-					quantidade = 1;
-					valor = 2500 + j;
-					marca = "Marca" + j;
-					patrimonios.setNomeItem(nomes);
-					patrimonios.setQuantidade(quantidade);
-					patrimonios.setValor(valor);
-					patrimonios.setMarca(marca);
-					((EquipamentoConstrucao) patrimonios).setPesoEquipamento(j);
-					((EquipamentoConstrucao) patrimonios).setAnoFabricacao(2010 + j);
-					((EquipamentoConstrucao) patrimonios).setMaterial("Material" + j);
-					filial.cadastrarEditarPatrimonio(patrimonios);
+			for (int j = 0; j < 3; j++) { // Ajuste para percorrer apenas 3 vezes (para cada tipo de patrimônio)
+				ItemPatrimonio patrimonio;
+				String tipo;
+				String nome;
+				int quantidade = 1;
+				double valor = 2500 + j;
+				String marca = "Marca" + j;
+
+				if (j == 0) {
+					patrimonio = new Veiculo();
+					tipo = "Veiculo";
+					((Veiculo) patrimonio).setTipoVeiculo("Tipo" + i);
+					((Veiculo) patrimonio).setCor("Cor" + i);
+					((Veiculo) patrimonio).setQtdPortas(2);
+				} else if (j == 1) {
+					patrimonio = new EquipamentoEletronico();
+					tipo = "Eletronico";
+					((EquipamentoEletronico) patrimonio).setPesoEquipamento(i);
+					((EquipamentoEletronico) patrimonio).setVoltagem(220);
+					((EquipamentoEletronico) patrimonio).setSistema("Sistema" + i);
+					((EquipamentoEletronico) patrimonio).setModelo("Modelo" + i);
+				} else {
+					patrimonio = new EquipamentoConstrucao();
+					tipo = "Equipamento";
+					((EquipamentoConstrucao) patrimonio).setPesoEquipamento(i);
+					((EquipamentoConstrucao) patrimonio).setAnoFabricacao(2010 + i);
+					((EquipamentoConstrucao) patrimonio).setMaterial("Material" + i);
 				}
-				i += 9;
+
+				nome = tipo + i; // Concatena o tipo e o número da filial
+
+				patrimonio.setNomeItem(nome);
+				patrimonio.setQuantidade(quantidade);
+				patrimonio.setValor(valor);
+				patrimonio.setMarca(marca);
+
+				filial.editarCadastrarPatrimonio(patrimonio);
 			}
+
+			i++; // Incrementa o número da filial para a próxima iteração
 		}
 	}
 

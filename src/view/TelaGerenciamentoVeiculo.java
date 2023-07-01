@@ -166,7 +166,7 @@ public class TelaGerenciamentoVeiculo implements ActionListener {
 				String novoTipoVeiculo = tipoVeiculoJTF.getText();
 				String novaCorVeiculo = corVeiculoJTF.getText();
 				String novaQtdPortas = quantidadePortasJTF.getText();
-				controleDados.cadastrarEditarPatrimonioVeiculo(novoNome, novaQuantidade, novoValor, novaMarca,
+				controleDados.editarCadastrarPatrimonioVeiculo(novoNome, novaQuantidade, novoValor, novaMarca,
 						novoTipoVeiculo, novaCorVeiculo, novaQtdPortas, indiceFilialSelecionada,
 						indicePatrimonioSelecionado);
 				JOptionPane.showMessageDialog(salvar, "Patrimonio atualizado com sucesso!");

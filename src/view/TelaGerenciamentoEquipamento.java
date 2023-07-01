@@ -136,7 +136,7 @@ public class TelaGerenciamentoEquipamento implements ActionListener {
 				String novoPeso = pesoJTF.getText();
 				String novoAnoFabricacao = anoFabricacaoJTF.getText();
 				String novoMaterial = materialJTF.getText();
-				controleDados.cadastrarEditarPatrimonioConstucao(novoNome, novaQuantidade, novoValor, novaMarca,
+				controleDados.editarCadastrarPatrimonioConstrucao(novoNome, novaQuantidade, novoValor, novaMarca,
 						novoPeso, novoAnoFabricacao, novoMaterial, indiceFilialSelecionada, indicePatrimonioSelecionado);
 				JOptionPane.showMessageDialog(salvar, "Patrimonio atualizado com sucesso!");
 				janela.dispose();

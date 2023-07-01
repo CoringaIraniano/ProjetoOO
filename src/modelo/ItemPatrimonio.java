@@ -41,5 +41,15 @@ public abstract class ItemPatrimonio {
 	public String toString() {
 		return "NOME PATRIMONIO: " + nomeItem + "\nQUANTIDADE: " + quantidade + "\nVALOR: " + valor +"\nMARCA: "+ marca +"\n";
 	}
+	
+	// Sobrescreve a função equals para que ele busque o patrimônio com base no nome e não com base no seu endereço de memória
+	@Override
+	public boolean equals(Object item) {
+	    if (item instanceof ItemPatrimonio) {
+	        String nomeItem = ((ItemPatrimonio) item).getNomeItem();
+	        return this.nomeItem.equals(nomeItem);
+	    }
+	    return false;
+	}
 
 }

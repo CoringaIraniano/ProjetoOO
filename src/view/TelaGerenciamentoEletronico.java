@@ -152,7 +152,7 @@ public class TelaGerenciamentoEletronico implements ActionListener {
 				String novoSistema = sistemaJTF.getText();
 				String modelo = modeloJTF.getText();
 
-				controleDados.cadastrarEditarPatrimonioEletronico(novoNome, novaQuantidade, novoValor, novaMarca,
+				controleDados.editarCadastrarPatrimonioEletronico(novoNome, novaQuantidade, novoValor, novaMarca,
 						novoPeso, novaVoltagem, novoSistema, modelo, indiceFilialSelecionada,
 						indicePatrimonioSelecionado);
 				JOptionPane.showMessageDialog(salvar, "Patrimonio atualizado com sucesso!");
