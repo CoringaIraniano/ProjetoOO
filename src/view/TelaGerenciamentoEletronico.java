@@ -75,8 +75,8 @@ public class TelaGerenciamentoEletronico implements ActionListener {
 		modelo.setFont(new Font("Arial", Font.BOLD, 15));
 		modeloJTF.setBounds(80, 345, 280, 30);
 
-		salvar.setBounds(50, 350, 150, 40);
-		excluir.setBounds(280, 350, 150, 40);
+		salvar.setBounds(50, 390, 150, 40);
+		excluir.setBounds(280, 390, 150, 40);
 
 		janela.setLayout(null);
 
@@ -109,7 +109,7 @@ public class TelaGerenciamentoEletronico implements ActionListener {
 		janela.add(salvar);
 		janela.add(excluir);
 
-		janela.setSize(500, 450);
+		janela.setBounds(18, 220, 500, 480);
 		janela.setVisible(true);
 
 		salvar.addActionListener(this);

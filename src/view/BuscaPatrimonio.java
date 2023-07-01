@@ -13,58 +13,49 @@ public class BuscaPatrimonio implements ActionListener, ListSelectionListener {
 	private JTextField buscaPatrimonioJTF = new JTextField();
 	private JButton botaoBuscar = new JButton("Buscar");
 	private JList<String> listaPatrimoniosVinculados;
+	private JScrollPane scrollPane;
 	private String[] listaNomesPatrimonios;
-	private JButton botaoListar = new JButton("Listar Patrimonios");
-	// private ControleDados controleDados;
+	private static ControleDados controleDados;
 	private int qtdPatrimonios;
 
 	public BuscaPatrimonio(ControleDados controleDados) {
-		// this.controleDados = controleDados;
+		this.controleDados = controleDados;
 
 		buscaPatrimonio.setFont(new Font("Arial", Font.BOLD, 15));
 		buscaPatrimonio.setBounds(10, 10, 180, 50);
 		buscaPatrimonioJTF.setBounds(160, 20, 250, 30);
-		botaoBuscar.setBounds(160, 65, 150, 40);
+		botaoBuscar.setBounds(415, 20, 100, 30);
 
 		listaNomesPatrimonios = new ControlePatrimonio(controleDados).getNomesPatrimonios();
 		listaPatrimoniosVinculados = new JList<>(listaNomesPatrimonios);
-		listaPatrimoniosVinculados.setBounds(18, 130, 450, 250);
+		scrollPane = new JScrollPane(listaPatrimoniosVinculados);
+		scrollPane.setBounds(18, 75, 490, 250);
 		listaPatrimoniosVinculados.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 		listaPatrimoniosVinculados.setVisibleRowCount(10);
-
-		botaoListar.setBounds(160, 400, 150, 40);
 
 		janela.setLayout(null);
 
 		janela.add(buscaPatrimonio);
 		janela.add(buscaPatrimonioJTF);
 		janela.add(botaoBuscar);
-		janela.add(listaPatrimoniosVinculados);
-		janela.add(botaoListar);
+		janela.add(scrollPane);
 
-		janela.setSize(500, 500);
+		janela.setBounds(1000, 140, 540, 385);
 		janela.setVisible(true);
 
-		botaoListar.addActionListener(this);
 		botaoBuscar.addActionListener(this);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == botaoListar) {
-			// qtdPatrimonios = (new ControlePatrimonio(controleDados)).getQtdPatrimonios();
-			// listaPatrimonios = new
-			// ControlePatrimonio(controleDados).getNomesPatrimonios(); // Atualiza a lista
-			// de patrimônios
-			// listaPatrimoniosVinculados.setListData(listaPatrimonios);
-			// listaPatrimoniosVinculados.updateUI();
+		if (e.getSource() == botaoBuscar) {
+			// Implemente a lógica para buscar patrimônios
 		}
-
 	}
 
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
-		// TODO Auto-generated method stub
-
+		// Implemente a lógica para lidar com a seleção na lista
 	}
+
 }

@@ -43,7 +43,7 @@ public class TelaCadastroPatrimonio implements ActionListener {
 	private JLabel material = new JLabel("Material: ");
 	private JTextField materialJTF = new JTextField();
 	private JButton cadastrar = new JButton("Cadastrar");
-	private static ControleDados controleDados = new ControleDados();
+	private static ControleDados controleDados;
 	private int indicePatrimonio;
 	private int patrimonio;
 	private int index;
@@ -244,7 +244,7 @@ public class TelaCadastroPatrimonio implements ActionListener {
 
 		janela.add(container);
 
-		janela.setSize(500, 700);
+		janela.setBounds(18, 140, 500, 700);
 		janela.setVisible(true);
 
 		botaoVeiculo.addActionListener(this);
@@ -276,12 +276,11 @@ public class TelaCadastroPatrimonio implements ActionListener {
 			String tipo = tipoVeiculoJTF.getText();
 			String cor = corVeiculoJTF.getText();
 			String quantidadePortas = quantidadePortasJTF.getText();
-			if (nome.equals("") || quantidade.equals("") || valor.equals("") || marca.equals("")
-					|| tipoVeiculoJTF.getText().equals("") || corVeiculoJTF.getText().equals("")
-					|| quantidadePortasJTF.getText().equals("")) {
+			if (nome.equals("") || quantidade.equals("") || valor.equals("") || marca.equals("") || tipo.equals("")
+					|| cor.equals("") || quantidadePortas.equals("")) {
 				JOptionPane.showMessageDialog(cadastrar, "Preencha todos os campos!");
-			} else if (!quantidade.matches("[0-9]+") || !valor.matches("[0-9]+")
-					|| !quantidadePortasJTF.getText().matches("[0-9]+")) {
+			} else if (!quantidade.matches("[0-9]+") || !valor.matches("[-+]?[0-9]*\\.?[0-9]*")
+					|| !quantidadePortas.matches("[0-9]+")) {
 				JOptionPane.showMessageDialog(cadastrar,
 						"Preencha os campos de quantidade, valor e quantidade de portas corretamente!");
 			} else {
@@ -292,42 +291,37 @@ public class TelaCadastroPatrimonio implements ActionListener {
 			}
 
 		} else if (patrimonio == 2) {
-			String peso = pesoJTF.getText();
+			String pesoEletronico = pesoJTF.getText();
 			String voltagem = voltagemJTF.getText();
 			String sistema = sistemaJTF.getText();
 			String modelo = modeloJTF.getText();
 			if (nome.equals("") || quantidade.equals("") || valor.equals("") || marca.equals("")
-					|| pesoJTF.getText().equals("") || voltagemJTF.getText().equals("")
-					|| sistemaJTF.getText().equals("") || modeloJTF.getText().equals("")
-					|| !quantidade.matches("[0-9]+") || !valor.matches("[0-9]+")) {
+					|| pesoEletronico.equals("") || voltagem.equals("") || sistema.equals("") || modelo.equals("")) {
 				JOptionPane.showMessageDialog(cadastrar, "Preencha todos os campos!");
-			} else if (quantidade.matches("[0-9]+") || valor.matches("[0-9]+") || !pesoJTF.getText().matches("[0-9]+")
-					|| !voltagemJTF.getText().matches("[0-9]+")) {
-				JOptionPane.showMessageDialog(cadastrar,
-						"Preencha os campos de quantidade, valor, peso e voltagem corretamente!");
+			} else if (!quantidade.matches("[0-9]+") || !valor.matches("[-+]?[0-9]*\\.?[0-9]*")
+					|| !pesoEletronico.matches("[-+]?[0-9]*\\.?[0-9]*") || !voltagem.matches("[-+]?[0-9]*\\.?[0-9]*")) {
+				JOptionPane.showMessageDialog(cadastrar, "Preencha os campos de quantidade, valor, peso e voltagem corretamente!");
 			} else {
-				controleDados.cadastrarEditarPatrimonioEletronico(nome, quantidade, valor, marca, peso, voltagem,
-						sistema, modelo, indexFilial, index);
-				JOptionPane.showMessageDialog(cadastrar, "Patrimonio cadastrado com sucesso!");
+				controleDados.cadastrarEditarPatrimonioEletronico(nome, quantidade, valor, marca, pesoEletronico,
+						voltagem, sistema, modelo, indexFilial, index);
+				JOptionPane.showMessageDialog(cadastrar, "Eletronico cadastrado com sucesso!");
 				janela.dispose();
 			}
+			
 		} else if (patrimonio == 3) {
-			String peso = pesoJTF.getText();
-			String material = materialJTF.getText();
+			String pesoEquipamento = pesoJTF.getText();
 			String anoFabricacao = anoFabricacaoJTF.getText();
+			String material = materialJTF.getText();
 			if (nome.equals("") || quantidade.equals("") || valor.equals("") || marca.equals("")
-					|| materialJTF.getText().equals("") || anoFabricacaoJTF.getText().equals("")
-					|| !quantidade.matches("[0-9]+") || !valor.matches("[0-9]+")
-					|| !anoFabricacaoJTF.getText().matches("[0-9]+")) {
+					|| pesoEquipamento.equals("") || material.equals("") || anoFabricacao.equals("")) {
 				JOptionPane.showMessageDialog(cadastrar, "Preencha todos os campos!");
-			} else if (quantidade.matches("[0-9]+") || valor.matches("[0-9]+")
-					|| !pesoJTF.getText().matches("[0-9]+")) {
-				JOptionPane.showMessageDialog(cadastrar,
-						"Preencha os campos de quantidade, valor e peso corretamente!");
+			} else if (!quantidade.matches("[0-9]+") || !valor.matches("[-+]?[0-9]*\\.?[0-9]*")
+					|| !pesoEquipamento.matches("[-+]?[0-9]*\\.?[0-9]*") || !anoFabricacao.matches("[0-9]+")) {
+				JOptionPane.showMessageDialog(cadastrar, "Preencha os campos de quantidade, valor, peso e ano de fabricacao corretamente!");
 			} else {
-				controleDados.cadastrarEditarPatrimonioConstucao(nome, quantidade, valor, marca, peso, material,
-						anoFabricacao, indexFilial, index);
-				JOptionPane.showMessageDialog(cadastrar, "Patrimonio cadastrado com sucesso!");
+				controleDados.cadastrarEditarPatrimonioConstucao(nome, quantidade, valor, marca, pesoEquipamento,
+						anoFabricacao, material, indexFilial, index);
+				JOptionPane.showMessageDialog(cadastrar, "Equipamento cadastrado com sucesso!");
 				janela.dispose();
 			}
 

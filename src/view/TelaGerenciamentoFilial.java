@@ -3,7 +3,6 @@ package view;
 import controle.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -46,7 +45,7 @@ public class TelaGerenciamentoFilial implements ActionListener, ListSelectionLis
 		janela.add(cadastrarFilial);
 		janela.add(refreshFilial);
 
-		janela.setSize(400, 350);
+		janela.setBounds(562, 435, 400, 350);
 		janela.setVisible(true);
 
 		cadastrarFilial.addActionListener(this);
@@ -71,7 +70,7 @@ public class TelaGerenciamentoFilial implements ActionListener, ListSelectionLis
 	public void valueChanged(ListSelectionEvent e) {
 		Object src = e.getSource();
 		if (e.getValueIsAdjusting() && src == listaFiliaisCadastradas) {
-			System.out.println(listaFiliaisCadastradas.getSelectedIndex());
+			//System.out.println(listaFiliaisCadastradas.getSelectedIndex());
 			new TelaGerenciamentoPatrimonio(controleDados, listaFiliaisCadastradas.getSelectedIndex());
 		}
 	}

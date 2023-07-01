@@ -1,4 +1,5 @@
 package modelo;
+
 import java.util.ArrayList;
 
 public class Filial {
@@ -8,10 +9,10 @@ public class Filial {
 	private ArrayList<ItemPatrimonio> patrimonio = new ArrayList<ItemPatrimonio>();
 
 	public Filial() {
-		
+
 	}
-	
-	public Filial(String nome, String endereco, String cnpj) {
+
+	public Filial(String nome, String cnpj, String endereco) {
 		this.nome = nome;
 		this.endereco = endereco;
 		this.cnpj = cnpj;
@@ -45,27 +46,26 @@ public class Filial {
 	public ArrayList<ItemPatrimonio> getPatrimonio() {
 		return patrimonio;
 	}
-	
+
 	public void setPatrimonio(ArrayList<ItemPatrimonio> patrimonios) {
 		patrimonio = patrimonios;
 	}
 
-
 	public String toString() {
 		return "\nNOME FILIAL: " + nome + "\nCNPJ: " + cnpj + "\nENDERECO: " + endereco + "\n";
 	}
-	
-	public void cadastrarPatrimonio(ItemPatrimonio item) {
+
+	public void cadastrarEditarPatrimonio(ItemPatrimonio item) {
 		patrimonio.add(item);
 	}
-	
+
 	public void removerPatrimonio(ItemPatrimonio item) {
 		patrimonio.remove(item);
 	}
-	
-	public String[] listarPatrimonio(){
+
+	public String[] listarPatrimonio() {
 		String[] patrimonioListados = new String[patrimonio.size()];
-		for (int i=0 ;i < patrimonio.size(); i++){
+		for (int i = 0; i < patrimonio.size(); i++) {
 			patrimonioListados[i] = patrimonio.get(i).getNomeItem();
 		}
 		return patrimonioListados;

@@ -50,7 +50,7 @@ public class TelaGerenciamentoPatrimonio implements ActionListener, ListSelectio
 	public TelaGerenciamentoPatrimonio(ControleDados controleDados, int index) {
 		this.indiceFilialSelecionada = index;
 		this.controleDados = controleDados;
-		//System.out.println(index);
+		// System.out.println(index);
 
 		titulo.setFont(new Font("Arial", Font.BOLD, 20));
 		titulo.setBounds(180, 10, 208, 50);
@@ -100,12 +100,8 @@ public class TelaGerenciamentoPatrimonio implements ActionListener, ListSelectio
 		janela.add(cadastrarPatrimonio);
 		janela.add(refreshPatrimonio);
 
-		janela.setSize(500, 550);
+		janela.setBounds(18, 140, 500, 550);
 		janela.setVisible(true);
-
-		nomeFilialJTF.setText(controleDados.getEscritorio().getFiliais().get(index).getNome());
-		cnpjJTF.setText(controleDados.getEscritorio().getFiliais().get(index).getCnpj());
-		enderecoJTF.setText(controleDados.getEscritorio().getFiliais().get(index).getEndereco());
 
 		salvar.addActionListener(this);
 		excluir.addActionListener(this);
@@ -113,6 +109,9 @@ public class TelaGerenciamentoPatrimonio implements ActionListener, ListSelectio
 		cadastrarPatrimonio.addActionListener(this);
 		listaPatrimoniosCadastrados.addListSelectionListener(this);
 
+		nomeFilialJTF.setText(controleDados.getEscritorio().getFiliais().get(index).getNome());
+		cnpjJTF.setText(controleDados.getEscritorio().getFiliais().get(index).getCnpj());
+		enderecoJTF.setText(controleDados.getEscritorio().getFiliais().get(index).getEndereco());
 	}
 
 	/**
@@ -146,8 +145,7 @@ public class TelaGerenciamentoPatrimonio implements ActionListener, ListSelectio
 			new TelaCadastroPatrimonio(controleDados, qtdPatrimonios, indiceFilialSelecionada);
 		} else if (e.getSource() == refreshPatrimonio) {
 			qtdPatrimonios = (new ControlePatrimonio(controleDados, indiceFilialSelecionada)).getQtdPatrimonios();
-			listaPatrimoniosCadastrados
-					.setListData(controleDados.getFilial(indiceFilialSelecionada).listarPatrimonio());
+			listaPatrimoniosCadastrados.setListData(controleDados.getFilial(indiceFilialSelecionada).listarPatrimonio());
 			listaPatrimoniosCadastrados.updateUI();
 		}
 	}
@@ -156,18 +154,20 @@ public class TelaGerenciamentoPatrimonio implements ActionListener, ListSelectio
 	public void valueChanged(ListSelectionEvent e) {
 		Object src = e.getSource();
 		int indexPatrimonio = listaPatrimoniosCadastrados.getSelectedIndex();
-		if (src == listaPatrimoniosCadastrados && e.getValueIsAdjusting()){
+		if (src == listaPatrimoniosCadastrados && e.getValueIsAdjusting()) {
 			if (controleDados.verificaPatrimonio(indexPatrimonio, indiceFilialSelecionada) == 3) {
-			new TelaGerenciamentoVeiculo(controleDados, indiceFilialSelecionada,listaPatrimoniosCadastrados.getSelectedIndex());
-		}
-		if (controleDados.verificaPatrimonio(indexPatrimonio, indiceFilialSelecionada) == 2) {
-			new TelaGerenciamentoEquipamento(controleDados, indiceFilialSelecionada,
-					listaPatrimoniosCadastrados.getSelectedIndex());
-		}
-		if (controleDados.verificaPatrimonio(indexPatrimonio, indiceFilialSelecionada) == 1) {
-			new TelaGerenciamentoEletronico(controleDados, indiceFilialSelecionada,listaPatrimoniosCadastrados.getSelectedIndex());
+				new TelaGerenciamentoVeiculo(controleDados, indiceFilialSelecionada,
+						listaPatrimoniosCadastrados.getSelectedIndex());
+			}
+			if (controleDados.verificaPatrimonio(indexPatrimonio, indiceFilialSelecionada) == 2) {
+				new TelaGerenciamentoEquipamento(controleDados, indiceFilialSelecionada,
+						listaPatrimoniosCadastrados.getSelectedIndex());
+			}
+			if (controleDados.verificaPatrimonio(indexPatrimonio, indiceFilialSelecionada) == 1) {
+				new TelaGerenciamentoEletronico(controleDados, indiceFilialSelecionada,
+						listaPatrimoniosCadastrados.getSelectedIndex());
+			}
 		}
 	}
-}
 
 }

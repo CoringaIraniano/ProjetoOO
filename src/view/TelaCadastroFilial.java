@@ -18,7 +18,7 @@ public class TelaCadastroFilial implements ActionListener {
 	private JTextField enderecoJTF = new JTextField();
 	private JButton cadastrar = new JButton("Cadastrar");
 	private static ControleDados controleDados;
-	int index;
+	private int index;
 
 	public TelaCadastroFilial(ControleDados controleDados, int index) {
 		this.controleDados = controleDados;
@@ -54,7 +54,7 @@ public class TelaCadastroFilial implements ActionListener {
 
 		janela.add(cadastrar);
 
-		janela.setSize(500, 300);
+		janela.setBounds(510, 465, 500, 300);
 		janela.setVisible(true);
 
 		cadastrar.addActionListener(this);

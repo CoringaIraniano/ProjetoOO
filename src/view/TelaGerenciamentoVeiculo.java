@@ -119,7 +119,7 @@ public class TelaGerenciamentoVeiculo implements ActionListener {
 		janela.add(salvar);
 		janela.add(excluir);
 
-		janela.setSize(500, 450);
+		janela.setBounds(18, 220, 500, 450);
 		janela.setVisible(true);
 
 		salvar.addActionListener(this);
