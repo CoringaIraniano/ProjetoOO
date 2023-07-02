@@ -11,17 +11,17 @@ import java.awt.event.ActionListener;
 
 /**
  * Implementa a interface que gerencia os dados das filiais, permite o cadastro
- * de patrimônio e mostra os patrimonios vinculados a filial na Jlist
+ * de patrimônio e mostra os patrimonios vinculados a filial na Jlist.
  * 
  * @author Paulo Henrique Melo de Souza
  * @author Kauã Richard de Souza Cavalcante
- * @since 2022
+ * @since 2023
  * @version 1.0
  */
 
 public class TelaGerenciamentoPatrimonio implements ActionListener, ListSelectionListener {
 
-	private JFrame janela = new JFrame();
+	private JFrame janela = new JFrame("Gerenciamento de Patrimonios");
 	private JLabel titulo = new JLabel("Dados Filial");
 	private JLabel nomeFilial = new JLabel("Nome Filial:");
 	private JTextField nomeFilialJTF = new JTextField();
@@ -42,15 +42,14 @@ public class TelaGerenciamentoPatrimonio implements ActionListener, ListSelectio
 	/**
 	 * Cria a TelaGerenciamentoPatrimonio
 	 * 
-	 * @param controleDados permite o acesso a classe Dados por meio do pacote
-	 *                      Controle onde fica toda a gerência de dados do projeto
-	 * @param index         gerencia a posição da filial selecionada
+	 * @param controleDados Permite o acesso a classe ControleDados por meio do pacote
+	 *                      controle onde fica toda a gerência de dados do projeto.
+	 * @param index         Gerencia a posição da filial selecionada.
 	 */
 
 	public TelaGerenciamentoPatrimonio(ControleDados controleDados, int index) {
 		this.indiceFilialSelecionada = index;
 		this.controleDados = controleDados;
-		// System.out.println(index);
 
 		titulo.setFont(new Font("Arial", Font.BOLD, 20));
 		titulo.setBounds(180, 10, 208, 50);
@@ -120,6 +119,8 @@ public class TelaGerenciamentoPatrimonio implements ActionListener, ListSelectio
 	 * respectivos a gerência de patrimônio. Já os botões salvar e excluir são
 	 * referentes à gerência da Filial selecionada na Jlist da
 	 * {@link TelaGerenciamentoFilial}.
+	 * 
+	 * @param e Parâmetro que define a ação dos botões no método actionPerformed.
 	 */
 
 	@Override
@@ -149,6 +150,15 @@ public class TelaGerenciamentoPatrimonio implements ActionListener, ListSelectio
 			listaPatrimoniosCadastrados.updateUI();
 		}
 	}
+	
+	/**
+	 * Chama o método verificaPatrimonio presente na classe ControleDados. Sendo que, caso indice do patrimônio selecionado 
+	 * já cadastrado seja uma instância de veículo (3), abra a {@link TelaGerenciamentoVeiculo} ou, caso seja uma instância de equipamento
+	 * de construção(2), abra a {@link TelaGerenciamentoEquipamento} ou, caso seja uma instância de eletrônico(1), abra a
+	 * {@link TelaGerenciamentoEletronico}.
+	 * 
+	 * @param e Parâmetro que define a ação do método valueChanged.
+	 * */
 
 	@Override
 	public void valueChanged(ListSelectionEvent e) {

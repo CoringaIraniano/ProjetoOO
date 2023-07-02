@@ -6,9 +6,19 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Implementa a interface de cadastro de filial.
+ * 
+ * @author Paulo Henrique Melo de Souza
+ * @author Kauã Richard de Sousa Cavalcante
+ * @since 2023;
+ * @version 1.0;
+ *
+ */
+
 public class TelaCadastroFilial implements ActionListener {
 
-	private JFrame janela = new JFrame();
+	private JFrame janela = new JFrame("Cadastro Filial");
 	private JLabel titulo = new JLabel("Dados Filial");
 	private JLabel nomeFilial = new JLabel("Nome Filial:");
 	private JTextField nomeFilialJTF = new JTextField();
@@ -19,6 +29,14 @@ public class TelaCadastroFilial implements ActionListener {
 	private JButton cadastrar = new JButton("Cadastrar");
 	private static ControleDados controleDados;
 	private int index;
+	
+	/**
+	 * @param controleDados permite o acesso a classe ControleDados por meio do pacote 
+	 * controle onde fica toda a gerência de dados do projeto
+	 * 
+	 * @param index Fornece o um inteiro que será usado para verificar o
+	 * indice do patrimonio dentro de uma filial, definindo as configuraçoes de tela suas funcionalidades.
+	 */
 
 	public TelaCadastroFilial(ControleDados controleDados, int index) {
 		this.controleDados = controleDados;
@@ -59,6 +77,12 @@ public class TelaCadastroFilial implements ActionListener {
 
 		cadastrar.addActionListener(this);
 	}
+	
+	/**
+	 * Cadastra uma filial e verifica se os campos foram preencido corretamente
+	 * 
+	 * @param e Parâmetro que define a ação dos botões no método actionPerformed.
+	 */
 
 	@Override
 	public void actionPerformed(ActionEvent e) {

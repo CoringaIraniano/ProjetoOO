@@ -6,12 +6,12 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Implementa a interface de menu do sistema
+ * Implementa a interface de menu do sistema.
  * 
  * @author Paulo Henrique Melo de Souza
  * @author Kauã Richard de Sousa Cavalcante
- * @since 2023;
- * @version 1.0;
+ * @since 2023
+ * @version 1.0
  *
  */
 
@@ -23,7 +23,7 @@ public class TelaMenu implements ActionListener {
 	private static ControleDados controleDados = new ControleDados();
 
 	/**
-	 * Constrói o menu principal do sistema
+	 * Cria o menu principal do sistema.
 	 */
 
 	public TelaMenu() {
@@ -44,7 +44,7 @@ public class TelaMenu implements ActionListener {
 	}
 
 	/**
-	 * Instancia os ActionListener para os botões do menu
+	 * Instancia os ActionListener para os botões do menu.
 	 * 
 	 * @param args
 	 */
@@ -56,9 +56,9 @@ public class TelaMenu implements ActionListener {
 	}
 
 	/**
-	 * Vai para a tela desejada a partir da ação de clique do botão selecionado
+	 * Vai para a tela desejada a partir da ação de clique do botão selecionado.
 	 * 
-	 * @param controleDados permite acesso a classe Dados no pacote Controle
+	 * @param e Parâmetro que define a ação dos botões no método actionPerformed.
 	 */
 
 	@Override

@@ -11,11 +11,11 @@ import javax.swing.JTextField;
 import controle.*;
 
 /**
- * Implementa a interface da TelaGerenciamentoVeiculo
+ * Implementa a interface da tela de gerenciamento de veiculo.
  * 
  * @author Paulo Henrique Melo de Souza
  * @author Kauã Richard de Sousa Cavalcante
- * @since 2022;
+ * @since 2023;
  * @version 1.0;
  */
 
@@ -43,13 +43,13 @@ public class TelaGerenciamentoVeiculo implements ActionListener {
 	private static ControleDados controleDados;
 
 	/**
-	 * Constrói a tela de gerenciamento de veículos
+	 * Cria a tela de gerenciamento de veículos
 	 * 
-	 * @param controleDados permite o acesso ao pacote Controle onde fica toda a
-	 *                      gerência de dados do projeto
-	 * @param indexFilial   representa a filial selecionada a partir da
-	 *                      TelaGerenciamentoPatrimonio
-	 * @param index         representa a posição do patrimônio selecionado
+	 * @param controleDados Permite o acesso ao pacote Controle onde fica toda a
+	 *                      gerência de dados do projeto.
+	 * @param indexFilial   Representa a filial selecionada a partir da
+	 *                      {@link TelaGerenciamentoPatrimonio}.
+	 * @param index         Representa a posição do patrimônio selecionado.
 	 */
 
 	public TelaGerenciamentoVeiculo(ControleDados controleDados, int indexFilial, int index) {
@@ -141,12 +141,11 @@ public class TelaGerenciamentoVeiculo implements ActionListener {
 	}
 
 	/**
-	 * Implementa as ações dos botões salvar e excluir
-	 */
-
-	/**
-	 * Pega os valores cadastrados na TelaCadastroVeiculo e permite a edição ou
-	 * exclusão dos mesmos
+	 * Pega os valores cadastrados na {@link TelaCadastroPatrimonio} e permite a edição ou
+	 * exclusão dos mesmos através do método editarCadastrarPatrimonioVeiculo presente na classe
+	 * ControleDados do pacote controle. Evitando o contato direto entre view e modelo.
+	 * 
+	 * @param e Parâmetro que define a ação dos botões no método actionPerformed.
 	 */
 
 	@Override

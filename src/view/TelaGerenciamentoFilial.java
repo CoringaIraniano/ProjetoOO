@@ -8,25 +8,37 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 
+/**
+ * Implementa a interface que permite o cadastro e a listagem de filiais.
+ * 
+ * @author Paulo Henrique Melo de Souza
+ * @author Kauã Richard de Souza Cavalcante
+ * @since 2023
+ * @version 1.0
+ */
+
 public class TelaGerenciamentoFilial implements ActionListener, ListSelectionListener {
-	private JFrame janela;
-	private JLabel titulo;
-	private JButton cadastrarFilial;
-	private JButton refreshFilial;
+	private JFrame janela = new JFrame("Gerenciamento Filiais");
+	private JLabel titulo = new JLabel("Filiais Cadastradas");
+	private JButton cadastrarFilial = new JButton("Cadastrar Filial");
+	private JButton refreshFilial = new JButton("Refresh");
 	private JList<String> listaFiliaisCadastradas;
 	private String[] listaFiliais;
 	private static ControleDados controleDados;
 	private int qtdFiliais;
+	
+	/**
+	 * Constrói a tela de gerenciamento de filial. Definindo todas as configurações,
+	 * implementando os botões na tela e suas funcionalidades.
+	 * 
+	 * @param dados Permite o acesso a classe Dados por meio do pacote Controle onde
+	 * fica toda a gerência de dados do projeto.
+	 * */
 
 	public TelaGerenciamentoFilial(ControleDados dados) {
 		controleDados = dados;
-		//System.out.println(controleDados.getFiliais());
-		listaFiliais = controleDados.getNomesFiliais();
+		listaFiliais = new ControleFilial(dados).getNomesFiliais();
 		listaFiliaisCadastradas = new JList<String>(listaFiliais);
-		janela = new JFrame("Gerenciamento Filiais");
-		titulo = new JLabel("Filiais Cadastradas");
-		cadastrarFilial = new JButton("Cadastrar Filial");
-		refreshFilial = new JButton("Refresh");
 
 		titulo.setFont(new Font("Arial", Font.BOLD, 20));
 		titulo.setBounds(105, 10, 200, 50);
@@ -53,6 +65,12 @@ public class TelaGerenciamentoFilial implements ActionListener, ListSelectionLis
 		listaFiliaisCadastradas.addListSelectionListener(this);
 	}
 
+	/**
+	 * Método responsável por permitir o acesso a {@link TelaCadastroFilial} e atualizar a lista de filiais cadastradas.
+	 * 
+	 * @param e Parâmetro que define a ação dos botões da tela no método actionPerformed.
+	 * */
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == cadastrarFilial) {
@@ -60,17 +78,21 @@ public class TelaGerenciamentoFilial implements ActionListener, ListSelectionLis
 			new TelaCadastroFilial(controleDados, qtdFiliais);
 		} else if (e.getSource() == refreshFilial) {
 			qtdFiliais = (new ControleFilial(controleDados)).getQtdFiliais();
-			//System.out.println(qtdFiliais);
-			listaFiliaisCadastradas.setListData(controleDados.getNomesFiliais());
+			listaFiliaisCadastradas.setListData(new ControleFilial(controleDados).getNomesFiliais());
 			listaFiliaisCadastradas.updateUI();
 		}
 	}
+	
+	/**
+	 * Método que adiciona as filiais cadastradas na {@link TelaCadastroFilial} na JList dessa interface.
+	 * 
+	 * @param e Parâmetro que define a ação dos botões da tela no método valueChanged.
+	 * */
 
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
 		Object src = e.getSource();
 		if (e.getValueIsAdjusting() && src == listaFiliaisCadastradas) {
-			//System.out.println(listaFiliaisCadastradas.getSelectedIndex());
 			new TelaGerenciamentoPatrimonio(controleDados, listaFiliaisCadastradas.getSelectedIndex());
 		}
 	}

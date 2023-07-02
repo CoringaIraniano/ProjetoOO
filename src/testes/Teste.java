@@ -3,6 +3,8 @@ package testes;
 import controle.*;
 import modelo.Escritorio;
 import modelo.Filial;
+import modelo.ItemPatrimonio;
+import modelo.Veiculo;
 
 import static org.junit.jupiter.api.Assertions.*;
 

@@ -10,8 +10,17 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import controle.*;
 
+/**
+ * Implementa a interface da tela de gerenciamento de eletrônico.
+ * 
+ * @author Paulo Henrique Melo de Souza
+ * @author Kauã Richard de Sousa Cavalcante
+ * @since 2023
+ * @version 1.0
+ */
+
 public class TelaGerenciamentoEletronico implements ActionListener {
-	private JFrame janela = new JFrame("Dados Patrimonio");
+	private JFrame janela = new JFrame("Edicao Eletronico");
 	private JLabel titulo = new JLabel("Eletronico");
 	private JLabel nomePatrimonio = new JLabel("Nome Patrimonio:");
 	private JTextField nomePatrimonioJTF = new JTextField();
@@ -34,6 +43,16 @@ public class TelaGerenciamentoEletronico implements ActionListener {
 	private int indicePatrimonioSelecionado;
 	private int indiceFilialSelecionada;
 	private static ControleDados controleDados;
+	
+	/**
+	 * Cria a tela de gerenciamento de veículos
+	 * 
+	 * @param controleDados Permite o acesso ao pacote Controle onde fica toda a
+	 *                      gerência de dados do projeto.
+	 * @param indexFilial   Representa a filial selecionada a partir da
+	 *                      {@link TelaGerenciamentoPatrimonio}.
+	 * @param index         Representa a posição do patrimônio selecionado.
+	 */
 
 	public TelaGerenciamentoEletronico(ControleDados controleDados, int indexFilial, int index) {
 		this.controleDados = controleDados;
@@ -132,6 +151,14 @@ public class TelaGerenciamentoEletronico implements ActionListener {
 				String.valueOf(controleDados.eqpEquipamentoEletronico(index, indiceFilialSelecionada).getModelo()));
 
 	}
+	
+	/**
+	 * Pega os valores cadastrados na {@link TelaCadastroPatrimonio} e permite a edição ou
+	 * exclusão dos mesmos através do método editarCadastrarPatrimonioEletronico presente na classe
+	 * ControleDados do pacote controle. Evitando a interação direta entre view e modelo.
+	 * 
+	 * @param e Parâmetro que define a ação dos botões no método actionPerformed.
+	 */
 
 	@Override
 	public void actionPerformed(ActionEvent e) {

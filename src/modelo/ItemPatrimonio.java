@@ -1,5 +1,14 @@
 package modelo;
 
+/**
+ * Implementa a classe ItemPatrimonio.
+ * 
+ * @author Paulo Henrique Melo de Souza
+ * @author Kauã Richard de Sousa Cavalcante
+ * @since 2023
+ * @version 1.0
+ */
+
 public abstract class ItemPatrimonio {
 	protected String nomeItem;
 	protected int quantidade;
@@ -42,14 +51,4 @@ public abstract class ItemPatrimonio {
 		return "NOME PATRIMONIO: " + nomeItem + "\nQUANTIDADE: " + quantidade + "\nVALOR: " + valor +"\nMARCA: "+ marca +"\n";
 	}
 	
-	// Sobrescreve a função equals para que ele busque o patrimônio com base no nome e não com base no seu endereço de memória
-	@Override
-	public boolean equals(Object item) {
-	    if (item instanceof ItemPatrimonio) {
-	        String nomeItem = ((ItemPatrimonio) item).getNomeItem();
-	        return this.nomeItem.equals(nomeItem);
-	    }
-	    return false;
-	}
-
 }

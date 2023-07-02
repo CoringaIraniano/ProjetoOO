@@ -8,9 +8,18 @@ import controle.*;
 
 import java.awt.*;
 
+/**
+ * Implementa a interface de cadastro de patrimônio.
+ * 
+ * @author Paulo Henrique Melo de Souza
+ * @author Kauã Richard de Sousa Cavalcante
+ * @since 2023
+ * @version 1.0
+ * */
+
 public class TelaCadastroPatrimonio implements ActionListener {
 
-	private JFrame janela = new JFrame();
+	private JFrame janela = new JFrame("Cadastro Patrimonio");
 	private JPanel container = new JPanel();
 	private JLabel titulo = new JLabel("Dados Patrimonio");
 	private JButton botaoVeiculo = new JButton("Veiculo");
@@ -48,6 +57,16 @@ public class TelaCadastroPatrimonio implements ActionListener {
 	private int patrimonio;
 	private int index;
 	private int indexFilial;
+	
+	/**
+	 * Método que define as configurações iniciais de tela. Nesse método, é feito um switch case,
+	 * onde cada caso representa uma tela de cadastro de patrimônio. Utilizando os métodos removeAll, revalidate e repaint, é
+	 * possível reaproveitar a mesma tela para cadastrar os três tipos de patrimônios
+	 * 
+	 * 
+	 * @param pos Posição indicada do switch case.
+	 * @param posicao Posição utilizada para chamar o método no actionPerformed.
+	 */
 
 	public void cadastroPatrimonio(int pos, int posicao) {
 		patrimonio = pos;
@@ -221,6 +240,15 @@ public class TelaCadastroPatrimonio implements ActionListener {
 
 		}
 	}
+	
+	/**
+	 * Constrói a tela de cadastro de patrimonio no geral
+	 * 
+	 * @param controleDados Permite o acesso a classe ControleDados por meio do pacote controle onde 
+	 * fica toda a gerência de dados do projeto.
+	 * @param index Utilizado para cadastrar o patrimônio na posição desejada.
+	 * @param indexFilial Cadastra o patrimônio no respectivo indice da filial selecionado na {@link TelaGerenciamentoFilial}.
+	 * */
 
 	public TelaCadastroPatrimonio(ControleDados controleDados, int index, int indexFilial) {
 		this.index = index;
@@ -253,6 +281,17 @@ public class TelaCadastroPatrimonio implements ActionListener {
 		cadastrar.addActionListener(this);
 
 	}
+	
+	/**
+	 * Método actionPerformed que pega os atributos nome, quantidade, valor e 
+	 * marca e adiciona ao respectivo método na ControleDados
+	 * através da chamada do método cadastrarPatrimonio. 
+	 * Define qual janela de cadastro abrir a partir do valor retornado definido na
+	 * funçao de cima. Já definindo o indice do patrimonio e o tipo dele.
+	 * 
+	 * 
+	 * @param Parâmetro que define a ação dos botões no método actionPerformed.
+	 * */
 
 	public void actionPerformed(ActionEvent e) {
 		String nome = nomePatrimonioJTF.getText();
@@ -270,6 +309,19 @@ public class TelaCadastroPatrimonio implements ActionListener {
 			cadastrarPatrimonio(nome, quantidade, valor, marca);
 		}
 	}
+	
+	/**
+	 * Cadastra um patrimônio e verifica se os campos estão sendo preenchidos corretamente.
+	 * Caso patrimõnio seja igual a 1, os seguintes atributos: tipoVeiculo, cor e qtdPortas.
+	 * Caso patrimonio seja igual a 2, recebe os seguintes atributos: pesoEletronico, voltagem
+	 * sistema, modelo. Caso o patrimônio seja igual a 3, recebe os seguintes atributos: pesoEquipamento
+	 * anoFabricacao, material. Todos recebem os atributos nome, quantidade, valor e marca.
+	 * 
+	 * @param nome Nome do patrimônio.
+	 * @param quantidade Quantidade do patrimônio.
+	 * @param valor Valor do patrimônio.
+	 * @marca marca Marca do patrimônio.
+	 * */
 
 	private void cadastrarPatrimonio(String nome, String quantidade, String valor, String marca) {
 		if (patrimonio == 1) {
