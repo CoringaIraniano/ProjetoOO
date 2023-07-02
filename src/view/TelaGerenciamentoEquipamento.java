@@ -173,7 +173,7 @@ public class TelaGerenciamentoEquipamento implements ActionListener {
 				janela.dispose();
 			}
 		} else if (e.getSource() == excluir) {
-			controleDados.excluirPatrimonio(indiceFilialSelecionada, indicePatrimonioSelecionado);
+			controleDados.removerPatrimonio(indiceFilialSelecionada, indicePatrimonioSelecionado);
 			JOptionPane.showMessageDialog(excluir, "Patrimonio removido com sucesso!");
 			janela.dispose();
 		}

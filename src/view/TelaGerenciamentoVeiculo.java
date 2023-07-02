@@ -173,7 +173,7 @@ public class TelaGerenciamentoVeiculo implements ActionListener {
 			}
 			// Remove o patrimonio selecionado
 		} else if (e.getSource() == excluir) {
-			controleDados.excluirPatrimonio(indiceFilialSelecionada, indicePatrimonioSelecionado);
+			controleDados.removerPatrimonio(indiceFilialSelecionada, indicePatrimonioSelecionado);
 			JOptionPane.showMessageDialog(excluir, "Patrimonio removido com sucesso!");
 			janela.dispose();
 		}

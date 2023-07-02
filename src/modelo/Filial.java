@@ -92,8 +92,8 @@ public class Filial {
 	 * @param item Objeto do tipo {@link ItemPatrimonio} que permite trabalhar com os gets e sets das classes filhas.
 	 * */
 
-	public void removerPatrimonio(ItemPatrimonio item) {
-		patrimonio.remove(item);
+	public void removerPatrimonio(int index, ItemPatrimonio item) {
+		patrimonio.remove(index);
 	}
 	
 	/**

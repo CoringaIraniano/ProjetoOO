@@ -306,10 +306,12 @@ public class ControleDados {
 	 * @param index Representa a posição da filial selecionada.
 	 */
 
-	public void excluirFilial(int index) {
-
+	public boolean removerFilial(int index) {
 		if (index >= 0 && index < escritorio.getFiliais().size()) {
 			escritorio.removerFilial(getFiliais().get(index));
+			return true;
+		} else {
+			return false;
 		}
 	}
 
@@ -319,9 +321,12 @@ public class ControleDados {
 	 * @param index Representa a posição do patrimônio.
 	 */
 
-	public void excluirPatrimonio(int indexFilial, int index) {
+	public boolean removerPatrimonio(int indexFilial, int index) {
 		if (index >= 0 && index < escritorio.getFiliais().get(indexFilial).getPatrimonio().size()) {
-			escritorio.getFiliais().get(indexFilial).getPatrimonio().remove(index);
+			escritorio.getFiliais().get(indexFilial).removerPatrimonio(index, null);
+			return true;
+		} else {
+			return false;
 		}
 	}
 
@@ -332,7 +337,7 @@ public class ControleDados {
 	 * 
 	 * @param nome Nome inserido como base para procurar o patrimônio desejado.
 	 * @return retorna um vetor com valores atribuídos {-1,-1} para representar que nenhum patrimônio foi selecionado, visto que não existe
-	 * negativa no ArrayList de patrimônios.
+	 * posição negativa no ArrayList de patrimônios.
 	 * */
 
 	public int[] buscarPatrimonio(String nome) {

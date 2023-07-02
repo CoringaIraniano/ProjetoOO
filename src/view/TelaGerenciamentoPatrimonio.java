@@ -138,7 +138,7 @@ public class TelaGerenciamentoPatrimonio implements ActionListener, ListSelectio
 				janela.dispose();
 			}
 		} else if (e.getSource() == excluir) {
-			controleDados.excluirFilial(indiceFilialSelecionada);
+			controleDados.removerFilial(indiceFilialSelecionada);
 			JOptionPane.showMessageDialog(excluir, "Filial removida com sucesso!");
 			janela.dispose();
 		} else if (e.getSource() == cadastrarPatrimonio) {
